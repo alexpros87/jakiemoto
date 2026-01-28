@@ -581,3 +581,23 @@ footer {
 .no-results p {
     color: #a0a0a0;
 }
+/* Etykieta sekcji */
+.section-label {
+    text-align: center;
+    font-size: 0.85rem;
+    color: #C41E3A;
+    margin-bottom: 15px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Siatka marek */
+.brands-grid {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+}
+
+.brands-grid .option-content {
+    min-height: 60px;
+    padding: 15px 10px;
+}
