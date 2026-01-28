@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JAKIEMOTO - Znajdź swoje idealne auto</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚗</text></svg>">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <!-- Logo JAKIEMOTO -->
+            <div class="logo-container">
+                <svg class="logo" viewBox="0 0 400 70" width="320" height="56">
+                    <!-- J - Czerwony -->
+                    <path d="M5 10 h15 v38 c0 10 -5 15 -15 15 v-10 c5 0 8 -2 8 -7 V20 H5 V10z" fill="#C41E3A"/>
+                    
+                    <!-- A - Granatowy -->
+                    <path d="M35 10 h14 l18 52 h-13 l-3 -11 H39 l-3 11 H23 L35 10z M42 41 h10 l-5 -20 -5 20z" fill="#1B365D"/>
+                    
+                    <!-- K - Czerwony -->
+                    <path d="M75 10 h13 v20 l16 -20 h16 l-18 22 20 30 h-16 l-12 -21 -6 7 v14 H75 V10z" fill="#C41E3A"/>
+                    
+                    <!-- I - Granatowy -->
+                    <path d="M125 10 h13 v52 h-13 V10z" fill="#1B365D"/>
+                    
+                    <!-- E - Czerwony -->
+                    <path d="M150 10 h35 v10 h-22 v10 h19 v10 h-19 v12 h22 v10 h-35 V10z" fill="#C41E3A"/>
+                    
+                    <!-- M - Granatowy -->
+                    <path d="M195 10 h16 l9 30 9 -30 h16 v52 h-12 V25 l-10 37 h-7 l-10 -37 v37 h-11 V10z" fill="#1B365D"/>
+                    
+                    <!-- O - Granatowe koło z czerwonym akcentem -->
+                    <g transform="translate(272, 36)">
+                        <circle cx="0" cy="0" r="26" fill="#1B365D"/>
+                        <circle cx="0" cy="0" r="13" fill="white"/>
+                        <path d="M 0 0 L 26 0 A 26 26 0 0 0 18.4 -18.4 Z" fill="#C41E3A"/>
+                    </g>
+                    
+                    <!-- T - Czerwony -->
+                    <path d="M305 10 h38 v10 h-12 v42 h-13 V20 h-13 V10z" fill="#C41E3A"/>
+                    
+                    <!-- O - Czerwone koło z granatowym akcentem -->
+                    <g transform="translate(365, 36)">
+                        <circle cx="0" cy="0" r="26" fill="#C41E3A"/>
+                        <circle cx="0" cy="0" r="13" fill="white"/>
+                        <path d="M 0 0 L -18.4 -18.4 A 26 26 0 0 0 -26 0 Z" fill="#1B365D"/>
+                    </g>
+                </svg>
+            </div>
+            <p class="tagline">Odpowiedz na kilka pytań, a znajdziemy dla Ciebie idealne auto!</p>
+        </header>
+
+        <main>
+            <div class="progress-bar">
+                <div class="progress" id="progress"></div>
+            </div>
+            <p class="step-indicator">Krok <span id="currentStep">1</span> z <span id="totalSteps">8</span></p>
+
+            <form id="carQuestionnaireForm">
+                <!-- Krok 1: Płeć -->
+                <div class="form-step active" data-step="1">
+                    <h2>Jakiej jesteś płci?</h2>
+                    <div class="options-grid">
+                        <label class="option-card">
+                            <input type="radio" name="gender" value="male" required>
+                            <span class="option-content">
+                                <span class="icon">👨</span>
+                                <span class="label">Mężczyzna</span>
+                            </span>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="gender" value="female">
+                            <span class="option-content">
+                                <span class="icon">👩</span>
+                                <span class="label">Kobieta</span>
+                            </span>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="gender" value="other">
+                            <span class="option-content">
+                                <span class="icon">🧑</span>
+                                <span class="label">Wolę nie podawać</span>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Krok 2: Wiek -->
+                <div class="form-step" data-step="2">
+                    <h2>Ile masz lat?</h2>
+                    <div class="options-grid">
+                        <label class="option-card">
+                            <input type="radio" name="age" value="18-25" required>
+                            <span class="option-content">
+                                <span class="icon">🎓</span>
+                                <span class="label">18-25 lat</span>
+                            </span>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="age" value="26-35">
+                            <span class="option-content">
+                                <span class="icon">💼</span>
+                                <span class="label">26-35 lat</span>
+                            </span>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="age" value="36-45">
+                            <span class="option-content">
+                                <span class="icon">🏠</span>
+                                <span class="label">36-45 lat</span>
+                            </span>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="age" value="46-55">
+                            <span class="option-content">
+                                <span class="icon">👔</span>
+                                <span class="label">46-55 lat</span>
+                            </span>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="age" value="55+">
+                            <span class="option-content">
+                                <span class="icon">🌟</span>
+                                <span class="label">Powyżej 55 lat</span>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Krok 3: Wykształcenie -->
+                <div class="form-step" data-step="3">
+                    <h2>Jakie masz wykształcenie?</h2>
+                    <div class="options-grid">
+                        <label class="option-card">
+                            <input type="radio" name="education" value="podstawowe" required>
+                            <span class="option-content">
+                                <span class="icon">📝</span>
+                                <span class="label">Podstawowe</span>
+                            </span>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="education" value="zawodowe">
+                            <span class="option-content">
+                                <span class="icon">🔧</span>
+                                <span class="label">Zawodowe</span>
+                            </span>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="education" value="srednie">
+                            <span class="option-content">
+                                <span class="icon">🏫</span>
+                                <span class="label">Średnie</span>
+                            </span>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="education" value="licencjat">
+                            <span class="option-content">
+                                <span class="icon">🎓</span>
+                                <span class="label">Licencjat / Inżynier</span>
+                            </span>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="education" value="magister">
+                            <span class="option-content">
+                                <span class="icon">📚</span>
+                                <span class="label">Magister</span>
+                            </span>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="education" value="doktorat">
+                            <span class="option-content">
+                                <span class="icon">🎖️</span>
+                                <span class="label">Doktorat</span>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Krok 4: Zawód -->
+                <div class="form-step" data-step="4">
+                    <h2>Czym się zajmujesz?</h2>
+                    <div class="options-grid profession-grid">
+                        <label class="option-card">
+                            <input type="radio" name="profession" value="student" required>
+                            <span class="option-content">
+                                <span class="icon">📖</span>
+                                <span class="label">Student / Uczeń</span>
+                            </span>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="profession" value="it">
+                            <span class="option-content">
+                                <span class="icon">💻</span>
+                                <span class="label">IT / Programista</span>
+                            </span>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="profession" value="medycyna">
+                            <span class="option-content">
+                                <span class="icon">🏥</span>
+                                <span class="label">Medycyna</span>
+                            </span>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="profession" value="finanse">
+                            <span class="option-content">
+                                <span class="icon">💰</span>
+                                <span class="label">Finanse / Bankowość</span>
+                            </span>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="profession" value="wlasciciel">
+                            <span class="option-content">
+                                <span class="icon">🏢</span>
+                                <span class="label">Właściciel firmy</span>
+                            </span>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="profession" value="kreatywny">
+                            <span class="option-content">
+                                <span class="icon">🎨</span>
+                                <span class="label">Branża kreatywna</span>
+                            </span>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="profession" value="budownictwo">
+                            <span class="option-content">
+                                <span class="icon">🔨</span>
+                                <span class="label">Budownictwo / Rzemiosło</span>
+                            </span>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="profession" value="sprzedaz">
+                            <span class="option-content">
+                                <span class="icon">📊</span>
+                                <span class="label">Sprzedaż / Marketing</span>
+                            </span>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="profession" value="emeryt">
+                            <span class="option-content">
+                                <span class="icon">🌴</span>
+                                <span class="label">Emeryt / Rencista</span>
+                            </span>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="profession" value="inny">
+                            <span class="option-content">
+                                <span class="icon">🔄</span>
+                                <span class="label">Inny zawód</span>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Krok 5: Budżet -->
+                <div class="form-step" data-step="5">
+                    <h2>Jaki masz budżet na auto?</h2>
+                    <p class="step-description">Wybierz maksymalną kwotę, którą chcesz przeznaczyć na zakup samochodu</p>
+                    <div class="options-grid budget-grid">
+                        <label class="option-card">
+                            <input type="radio" name="budget" value="30000" required>
+                            <span class="option-content">
+                                <span class="icon">💵</span>
+                                <span class="label">Do 30 000 zł</span>
+                                <span class="description">Auta używane, starsze roczniki</span>
+                            </span>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="budget" value="50000">
+                            <span class="option-content">
+                                <span class="icon">💵</span>
+                                <span class="label">30 000 - 50 000 zł</span>
+                                <span class="description">Kompakty używane</span>
+                            </span>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="budget" value="80000">
+                            <span class="option-content">
+                                <span class="icon">💰</span>
+                                <span class="label">50 000 - 80 000 zł</span>
+                                <span class="description">Auta miejskie nowe / używane SUV-y</span>
+                            </span>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="budget" value="120000">
+                            <span class="option-content">
+                                <span class="icon">💰</span>
+                                <span class="label">80 000 - 120 000 zł</span>
+                                <span class="description">Klasa średnia</span>
+                            </span>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="budget" value="180000">
+                            <span class="option-content">
+                                <span class="icon">💎</span>
+                                <span class="label">120 000 - 180 000 zł</span>
+                                <span class="description">Premium i nowe SUV-y</span>
+                            </span>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="budget" value="250000">
+                            <span class="option-content">
+                                <span class="icon">💎</span>
+                                <span class="label">180 000 - 250 000 zł</span>
+                                <span class="description">Auta luksusowe</span>
+                            </span>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="budget" value="999999">
+                            <span class="option-content">
+                                <span class="icon">👑</span>
+                                <span class="label">Powyżej 250 000 zł</span>
+                                <span class="description">Bez limitu budżetowego</span>
+                            </span>
+                        </label>
+                    </div>
+                    
+                    <!-- Własna kwota -->
+                    <div class="custom-budget-section">
+                        <p>Lub wpisz własną kwotę:</p>
+                        <div class="budget-input-wrapper">
+                            <input type="number" id="customBudget" placeholder="np. 75000" min="10000" max="2000000">
+                            <span class="currency">zł</span>
+                            <button type="button" id="applyBudgetBtn" class="btn btn-small">Zatwierdź</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Krok 6: Zainteresowania -->
+                <div class="form-step" data-step="6">
+                    <h2>Jakie są Twoje zainteresowania?</h2>
+                    <p class="step-description">Wybierz wszystkie, które do Ciebie pasują</p>
+                    <div class="options-grid interests-grid">
+                        <label class="option-card checkbox">
+                            <input type="checkbox" name="interests" value="rodzina">
+                            <span class="option-content">
+                                <span class="icon">👨‍👩‍👧‍👦</span>
+                                <span class="label">Rodzina</span>
+                            </span>
+                        </label>
+                        <label class="option-card checkbox">
+                            <input type="checkbox" name="interests" value="sport">
+                            <span class="option-content">
+                                <span class="icon">⚽</span>
+                                <span class="label">Sport</span>
+                            </span>
+                        </label>
+                        <label class="option-card checkbox">
+                            <input type="checkbox" name="interests" value="outdoor">
+                            <span class="option-content">
+                                <span class="icon">🏕️</span>
+                                <span class="label">Natura / Przygoda</span>
+                            </span>
+                        </label>
+                        <label class="option-card checkbox">
+                            <input type="checkbox" name="interests" value="technologia">
+                            <span class="option-content">
+                                <span class="icon">🤖</span>
+                                <span class="label">Technologia</span>
+                            </span>
+                        </label>
+                        <label class="option-card checkbox">
+                            <input type="checkbox" name="interests" value="podroze">
+                            <span class="option-content">
+                                <span class="icon">✈️</span>
+                                <span class="label">Podróże</span>
+                            </span>
+                        </label>
+                        <label class="option-card checkbox">
+                            <input type="checkbox" name="interests" value="luksus">
+                            <span class="option-content">
+                                <span class="icon">💎</span>
+                                <span class="label">Luksus / Prestiż</span>
+                            </span>
+                        </label>
+                        <label class="option-card checkbox">
+                            <input type="checkbox" name="interests" value="ekologia">
+                            <span class="option-content">
+                                <span class="icon">🌱</span>
+                                <span class="label">Ekologia</span>
+                            </span>
+                        </label>
+                        <label class="option-card checkbox">
+                            <input type="checkbox" name="interests" value="predkosc">
+                            <span class="option-content">
+                                <span class="icon">🏎️</span>
+                                <span class="label">Prędkość / Osiągi</span>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Krok 7: Środowisko jazdy -->
+                <div class="form-step" data-step="7">
+                    <h2>Gdzie będziesz głównie jeździć?</h2>
+                    <div class="options-grid">
+                        <label class="option-card">
+                            <input type="radio" name="drivingEnv" value="miasto" required>
+                            <span class="option-content">
+                                <span class="icon">🏙️</span>
+                                <span class="label">Miasto</span>
+                                <span class="description">Korki, parkowanie, krótkie trasy</span>
+                            </span>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="drivingEnv" value="trasa">
+                            <span class="option-content">
+                                <span class="icon">🛣️</span>
+                                <span class="label">Trasa / Autostrada</span>
+                                <span class="description">Długie dystanse, komfort</span>
+                            </span>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="drivingEnv" value="mieszane">
+                            <span class="option-content">
+                                <span class="icon">🔀</span>
+                                <span class="label">Mieszane</span>
+                                <span class="description">Miasto i trasa po równo</span>
+                            </span>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="drivingEnv" value="teren">
+                            <span class="option-content">
+                                <span class="icon">🏔️</span>
+                                <span class="label">Teren / Wieś</span>
+                                <span class="description">Drogi nieutwardzone, polne</span>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Krok 8: Priorytety -->
+                <div class="form-step" data-step="8">
+                    <h2>Co jest dla Ciebie najważniejsze w aucie?</h2>
+                    <p class="hint">Przeciągnij elementy, aby ustawić kolejność od najważniejszego (góra) do najmniej ważnego (dół)</p>
+                    <ul id="priorityList" class="priority-list">
+                        <li data-attribute="cena" class="priority-item">
+                            <span class="drag-handle">☰</span>
+                            <span class="priority-icon">💵</span>
+                            <span class="priority-label">Niska cena</span>
+                        </li>
+                        <li data-attribute="spalanie" class="priority-item">
+                            <span class="drag-handle">☰</span>
+                            <span class="priority-icon">⛽</span>
+                            <span class="priority-label">Niskie spalanie</span>
+                        </li>
+                        <li data-attribute="bezpieczenstwo" class="priority-item">
+                            <span class="drag-handle">☰</span>
+                            <span class="priority-icon">🛡️</span>
+                            <span class="priority-label">Bezpieczeństwo</span>
+                        </li>
+                        <li data-attribute="komfort" class="priority-item">
+                            <span class="drag-handle">☰</span>
+                            <span class="priority-icon">🛋️</span>
+                            <span class="priority-label">Komfort jazdy</span>
+                        </li>
+                        <li data-attribute="osiagi" class="priority-item">
+                            <span class="drag-handle">☰</span>
+                            <span class="priority-icon">🏁</span>
+                            <span class="priority-label">Osiągi / Moc</span>
+                        </li>
+                        <li data-attribute="przestrzen" class="priority-item">
+                            <span class="drag-handle">☰</span>
+                            <span class="priority-icon">📦</span>
+                            <span class="priority-label">Przestronność / Bagażnik</span>
+                        </li>
+                        <li data-attribute="wyposazenie" class="priority-item">
+                            <span class="drag-handle">☰</span>
+                            <span class="priority-icon">📱</span>
+                            <span class="priority-label">Wyposażenie / Technologia</span>
+                        </li>
+                        <li data-attribute="niezawodnosc" class="priority-item">
+                            <span class="drag-handle">☰</span>
+                            <span class="priority-icon">🔧</span>
+                            <span class="priority-label">Niezawodność</span>
+                        </li>
+                        <li data-attribute="marka" class="priority-item">
+                            <span class="drag-handle">☰</span>
+                            <span class="priority-icon">🏷️</span>
+                            <span class="priority-label">Marka / Prestiż</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Przyciski nawigacji -->
+                <div class="form-navigation">
+                    <button type="button" id="prevBtn" class="btn btn-secondary" disabled>
+                        ← Wstecz
+                    </button>
+                    <button type="button" id="nextBtn" class="btn btn-primary">
+                        Dalej →
+                    </button>
+                    <button type="submit" id="submitBtn" class="btn btn-success" style="display: none;">
+                        🚗 Znajdź moje auto!
+                    </button>
+                </div>
+            </form>
+
+            <!-- Sekcja wyników -->
+            <div id="resultsSection" class="results-section" style="display: none;">
+                <h2>🎉 Twoje idealne auta</h2>
+                <p class="results-intro">Na podstawie Twoich odpowiedzi i budżetu <span id="budgetDisplay"></span> polecamy:</p>
+                <div id="carResults" class="car-results"></div>
+                <button type="button" id="startOverBtn" class="btn btn-secondary">
+                    🔄 Zacznij od nowa
+                </button>
+            </div>
+        </main>
+
+        <footer>
+            <div class="footer-logo">
+                <svg viewBox="0 0 400 70" width="160" height="28">
+                    <path d="M5 10 h15 v38 c0 10 -5 15 -15 15 v-10 c5 0 8 -2 8 -7 V20 H5 V10z" fill="#C41E3A"/>
+                    <path d="M35 10 h14 l18 52 h-13 l-3 -11 H39 l-3 11 H23 L35 10z M42 41 h10 l-5 -20 -5 20z" fill="#1B365D"/>
+                    <path d="M75 10 h13 v20 l16 -20 h16 l-18 22 20 30 h-16 l-12 -21 -6 7 v14 H75 V10z" fill="#C41E3A"/>
+                    <path d="M125 10 h13 v52 h-13 V10z" fill="#1B365D"/>
+                    <path d="M150 10 h35 v10 h-22 v10 h19 v10 h-19 v12 h22 v10 h-35 V10z" fill="#C41E3A"/>
+                    <path d="M195 10 h16 l9 30 9 -30 h16 v52 h-12 V25 l-10 37 h-7 l-10 -37 v37 h-11 V10z" fill="#1B365D"/>
+                    <g transform="translate(272, 36)">
+                        <circle cx="0" cy="0" r="26" fill="#1B365D"/>
+                        <circle cx="0" cy="0" r="13" fill="#1a1a2e"/>
+                        <path d="M 0 0 L 26 0 A 26 26 0 0 0 18.4 -18.4 Z" fill="#C41E3A"/>
+                    </g>
+                    <path d="M305 10 h38 v10 h-12 v42 h-13 V20 h-13 V10z" fill="#C41E3A"/>
+                    <g transform="translate(365, 36)">
+                        <circle cx="0" cy="0" r="26" fill="#C41E3A"/>
+                        <circle cx="0" cy="0" r="13" fill="#1a1a2e"/>
+                        <path d="M 0 0 L -18.4 -18.4 A 26 26 0 0 0 -26 0 Z" fill="#1B365D"/>
+                    </g>
+                </svg>
+            </div>
+            <p>© 2024 JAKIEMOTO - Znajdź swoje wymarzone auto</p>
+            <p class="footer-links">Wyniki wyszukiwania prowadzą do <a href="https://www.otomoto.pl" target="_blank">OTOMOTO.pl</a></p>
+        </footer>
+    </div>
+
+    <script src="data/cars.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
