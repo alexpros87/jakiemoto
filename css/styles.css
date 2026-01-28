@@ -17,7 +17,6 @@ body {
     padding: 20px;
 }
 
-/* Nagłówek i Logo */
 header {
     text-align: center;
     padding: 40px 0;
@@ -55,7 +54,6 @@ main {
     border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Pasek postępu */
 .progress-bar {
     width: 100%;
     height: 8px;
@@ -80,7 +78,6 @@ main {
     font-size: 0.9rem;
 }
 
-/* Kroki formularza */
 .form-step {
     display: none;
     animation: fadeIn 0.5s ease;
@@ -91,14 +88,8 @@ main {
 }
 
 @keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 .form-step h2 {
@@ -115,12 +106,17 @@ main {
     font-size: 0.95rem;
 }
 
-/* Siatka opcji */
 .options-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     gap: 15px;
     margin-bottom: 30px;
+}
+
+.gender-grid {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 400px;
+    margin: 0 auto 30px;
 }
 
 .profession-grid,
@@ -183,7 +179,6 @@ main {
     text-align: center;
 }
 
-/* Sekcja własnego budżetu */
 .custom-budget-section {
     margin-top: 30px;
     text-align: center;
@@ -216,23 +211,16 @@ main {
     width: 160px;
     text-align: center;
     font-family: 'Poppins', sans-serif;
-    transition: all 0.3s ease;
 }
 
 .budget-input-wrapper input:focus {
     outline: none;
     border-color: #C41E3A;
-    background: rgba(255, 255, 255, 0.1);
-}
-
-.budget-input-wrapper input::placeholder {
-    color: #666;
 }
 
 .budget-input-wrapper .currency {
     font-weight: 600;
     color: #a0a0a0;
-    font-size: 1.1rem;
 }
 
 .btn-small {
@@ -240,7 +228,6 @@ main {
     font-size: 0.9rem !important;
 }
 
-/* Lista priorytetów (Drag & Drop) */
 .hint {
     text-align: center;
     color: #a0a0a0;
@@ -274,13 +261,11 @@ main {
 
 .priority-item.dragging {
     opacity: 0.5;
-    cursor: grabbing;
 }
 
 .priority-item.drag-over {
     border-color: #C41E3A;
     background: rgba(196, 30, 58, 0.2);
-    transform: scale(1.02);
 }
 
 .drag-handle {
@@ -298,7 +283,6 @@ main {
     font-weight: 500;
 }
 
-/* Przyciski nawigacji */
 .form-navigation {
     display: flex;
     justify-content: space-between;
@@ -352,7 +336,6 @@ main {
     cursor: not-allowed;
 }
 
-/* Sekcja wyników */
 .results-section {
     animation: fadeIn 0.5s ease;
 }
@@ -387,21 +370,12 @@ main {
     border-radius: 15px;
     overflow: hidden;
     transition: all 0.3s ease;
-    animation: fadeIn 0.5s ease;
 }
 
 .car-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     border-color: rgba(196, 30, 58, 0.5);
-}
-
-.car-card.out-of-budget {
-    opacity: 0.7;
-}
-
-.car-card.out-of-budget .car-image {
-    filter: grayscale(50%);
 }
 
 .car-image {
@@ -421,7 +395,6 @@ main {
 .car-info h3 {
     font-size: 1.2rem;
     margin-bottom: 5px;
-    color: #fff;
 }
 
 .car-info .car-type {
@@ -434,38 +407,7 @@ main {
     font-size: 1.1rem;
     font-weight: 700;
     margin-bottom: 10px;
-}
-
-.car-info .car-price.within-budget {
     color: #00b894;
-}
-
-.car-info .car-price.over-budget {
-    color: #ffa502;
-}
-
-.budget-status {
-    display: inline-block;
-    padding: 4px 12px;
-    border-radius: 20px;
-    font-size: 0.75rem;
-    font-weight: 600;
-    margin-bottom: 10px;
-}
-
-.budget-status.within {
-    background: rgba(0, 184, 148, 0.2);
-    color: #00b894;
-}
-
-.budget-status.over {
-    background: rgba(255, 165, 0, 0.2);
-    color: #ffa502;
-}
-
-.budget-status.way-over {
-    background: rgba(255, 71, 87, 0.2);
-    color: #ff4757;
 }
 
 .car-features {
@@ -483,28 +425,15 @@ main {
     font-size: 0.7rem;
 }
 
-.match-reasons {
+.match-score {
+    display: inline-block;
+    background: linear-gradient(90deg, #1B365D, #2d5a9e);
+    color: white;
+    padding: 5px 12px;
+    border-radius: 20px;
     font-size: 0.8rem;
-    color: #a0a0a0;
-    margin-bottom: 15px;
-    padding: 10px;
-    background: rgba(255, 255, 255, 0.03);
-    border-radius: 8px;
-}
-
-.match-reasons ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.match-reasons li {
-    padding: 2px 0;
-}
-
-.match-reasons li::before {
-    content: "✓ ";
-    color: #00b894;
+    font-weight: 600;
+    margin-bottom: 10px;
 }
 
 .car-link {
@@ -521,40 +450,6 @@ main {
 
 .car-link:hover {
     opacity: 0.9;
-    transform: scale(1.02);
-}
-
-.match-score {
-    display: inline-block;
-    background: linear-gradient(90deg, #1B365D, #2d5a9e);
-    color: white;
-    padding: 5px 12px;
-    border-radius: 20px;
-    font-size: 0.8rem;
-    font-weight: 600;
-    margin-bottom: 10px;
-}
-
-/* Brak wyników */
-.no-results {
-    text-align: center;
-    padding: 60px 20px;
-}
-
-.no-results .icon {
-    font-size: 5rem;
-    margin-bottom: 20px;
-}
-
-.no-results h3 {
-    font-size: 1.5rem;
-    margin-bottom: 15px;
-    color: #fff;
-}
-
-.no-results p {
-    color: #a0a0a0;
-    margin-bottom: 10px;
 }
 
 #startOverBtn {
@@ -562,7 +457,6 @@ main {
     margin: 30px auto 0;
 }
 
-/* Stopka */
 footer {
     text-align: center;
     padding: 30px 0;
@@ -573,16 +467,6 @@ footer {
 .footer-logo {
     margin-bottom: 15px;
     opacity: 0.7;
-    transition: opacity 0.3s ease;
-}
-
-.footer-logo:hover {
-    opacity: 1;
-}
-
-.footer-logo svg {
-    height: 28px;
-    width: auto;
 }
 
 .footer-links {
@@ -595,11 +479,6 @@ footer {
     text-decoration: none;
 }
 
-.footer-links a:hover {
-    text-decoration: underline;
-}
-
-/* Własny alert */
 .custom-alert {
     position: fixed;
     top: 0;
@@ -611,7 +490,6 @@ footer {
     align-items: center;
     justify-content: center;
     z-index: 1000;
-    animation: fadeIn 0.3s ease;
 }
 
 .alert-content {
@@ -620,12 +498,10 @@ footer {
     border-radius: 15px;
     text-align: center;
     border: 1px solid rgba(255, 255, 255, 0.1);
-    max-width: 400px;
 }
 
 .alert-content p {
     margin-bottom: 20px;
-    font-size: 1.1rem;
 }
 
 .alert-content button {
@@ -636,97 +512,20 @@ footer {
     color: white;
     cursor: pointer;
     font-weight: 600;
-    font-family: 'Poppins', sans-serif;
-    transition: all 0.3s ease;
 }
 
-.alert-content button:hover {
-    transform: scale(1.05);
-}
-
-/* Responsywność */
 @media (max-width: 768px) {
-    .container {
-        padding: 10px;
-    }
-
-    main {
-        padding: 25px 20px;
-    }
-
-    .logo {
-        width: 260px;
-    }
-
-    .tagline {
-        font-size: 0.95rem;
-    }
-
-    .form-step h2 {
-        font-size: 1.3rem;
-    }
-
-    .options-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 10px;
-    }
-
-    .budget-grid {
-        grid-template-columns: 1fr 1fr;
-    }
-
-    .option-content {
-        padding: 15px 10px;
-        min-height: 100px;
-    }
-
-    .option-content .icon {
-        font-size: 1.5rem;
-    }
-
-    .option-content .label {
-        font-size: 0.85rem;
-    }
+    .container { padding: 10px; }
+    main { padding: 25px 20px; }
+    .logo { width: 260px; }
+    .options-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .gender-grid { max-width: 100%; }
 }
 
 @media (max-width: 480px) {
-    .logo {
-        width: 220px;
-    }
-
-    .options-grid {
-        grid-template-columns: 1fr 1fr;
-    }
-
-    .budget-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .form-navigation {
-        flex-direction: column;
-    }
-
-    .btn {
-        width: 100%;
-    }
-
-    .budget-input-wrapper {
-        flex-direction: column;
-    }
-
-    .budget-input-wrapper input {
-        width: 100%;
-    }
-
-    .car-results {
-        grid-template-columns: 1fr;
-    }
-
-    .priority-list {
-        padding: 0 5px;
-    }
-
-    .priority-item {
-        padding: 12px 15px;
-    }
+    .logo { width: 220px; }
+    .budget-grid { grid-template-columns: 1fr; }
+    .form-navigation { flex-direction: column; }
+    .btn { width: 100%; }
+    .car-results { grid-template-columns: 1fr; }
 }
