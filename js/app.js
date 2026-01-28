@@ -79,8 +79,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // NIE MA AUTO-PRZEJŚCIA - użytkownik musi kliknąć "Dalej"
-
     // ===== FUNKCJE =====
 
     // Przejdź do następnego kroku
@@ -128,63 +126,62 @@ document.addEventListener('DOMContentLoaded', function() {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-// Walidacja aktualnego kroku
-function validateCurrentStep() {
-    console.log('Walidacja kroku:', currentStep);
-    
-    const currentStepEl = document.querySelector('.form-step[data-step="' + currentStep + '"]');
-    
-    if (!currentStepEl) {
-        console.error('Nie znaleziono elementu kroku:', currentStep);
-        return false;
-    }
-
-    // Kroki z checkboxami (wymagane przynajmniej 1)
-    const checkboxSteps = [3, 5, 8, 16];
-    if (checkboxSteps.includes(currentStep)) {
-        const checkboxName = currentStepEl.querySelector('input[type="checkbox"]').name;
-        const checked = currentStepEl.querySelectorAll('input[name="' + checkboxName + '"]:checked');
-        if (checked.length === 0) {
-            showAlert('Wybierz przynajmniej jedną opcję.');
+    // Walidacja aktualnego kroku
+    function validateCurrentStep() {
+        console.log('Walidacja kroku:', currentStep);
+        
+        const currentStepEl = document.querySelector('.form-step[data-step="' + currentStep + '"]');
+        
+        if (!currentStepEl) {
+            console.error('Nie znaleziono elementu kroku:', currentStep);
             return false;
         }
-        return true;
-    }
 
-    // Krok 19 (marki) - opcjonalne, zawsze OK
-    if (currentStep === 19) {
-        return true;
-    }
-
-    // Krok 20 (priorytety) - zawsze OK
-    if (currentStep === 20) {
-        return true;
-    }
-
-    // Krok 11 (budżet) - można też użyć własnej kwoty
-    if (currentStep === 11) {
-        const checked = currentStepEl.querySelector('input[name="budget"]:checked');
-        if (!checked && !customBudgetValue) {
-            showAlert('Wybierz budżet lub wpisz własną kwotę.');
-            return false;
+        // Kroki z checkboxami (wymagane przynajmniej 1)
+        const checkboxSteps = [3, 5, 8, 16];
+        if (checkboxSteps.includes(currentStep)) {
+            const firstCheckbox = currentStepEl.querySelector('input[type="checkbox"]');
+            if (firstCheckbox) {
+                const checkboxName = firstCheckbox.name;
+                const checked = currentStepEl.querySelectorAll('input[name="' + checkboxName + '"]:checked');
+                if (checked.length === 0) {
+                    showAlert('Wybierz przynajmniej jedną opcję.');
+                    return false;
+                }
+            }
+            return true;
         }
-        return true;
-    }
 
-    // Inne kroki z radio buttons
-    const radios = currentStepEl.querySelectorAll('input[type="radio"]');
-    if (radios.length > 0) {
-        const groupName = radios[0].name;
-        const checked = currentStepEl.querySelector('input[name="' + groupName + '"]:checked');
-        if (!checked) {
-            showAlert('Wybierz jedną z opcji.');
-            return false;
+        // Krok 19 (marki) - opcjonalne, zawsze OK
+        if (currentStep === 19) {
+            return true;
         }
-    }
 
-    console.log('Walidacja OK');
-    return true;
-}
+        // Krok 20 (priorytety) - zawsze OK
+        if (currentStep === 20) {
+            return true;
+        }
+
+        // Krok 11 (budżet) - można też użyć własnej kwoty
+        if (currentStep === 11) {
+            const checked = currentStepEl.querySelector('input[name="budget"]:checked');
+            if (!checked && !customBudgetValue) {
+                showAlert('Wybierz budżet lub wpisz własną kwotę.');
+                return false;
+            }
+            return true;
+        }
+
+        // Inne kroki z radio buttons
+        const radios = currentStepEl.querySelectorAll('input[type="radio"]');
+        if (radios.length > 0) {
+            const groupName = radios[0].name;
+            const checked = currentStepEl.querySelector('input[name="' + groupName + '"]:checked');
+            if (!checked) {
+                showAlert('Wybierz jedną z opcji.');
+                return false;
+            }
+        }
 
         console.log('Walidacja OK');
         return true;
@@ -236,18 +233,39 @@ function validateCurrentStep() {
     function handleSubmit() {
         console.log('Przetwarzam formularz...');
 
-        // Zbierz dane
+        // Zbierz dane z NOWYCH pytań
         const budgetRadio = document.querySelector('input[name="budget"]:checked');
         const budgetValue = customBudgetValue || (budgetRadio ? parseInt(budgetRadio.value) : 100000);
 
         const formData = {
-            gender: getRadioValue('gender'),
-            age: getRadioValue('age'),
-            education: getRadioValue('education'),
-            profession: getRadioValue('profession'),
+            // Sekcja 1: O Tobie
+            mainDriver: getRadioValue('mainDriver'),
+            carType: getRadioValue('carType'),
+            carUsage: getCheckboxValues('carUsage'),
+            passengers: getRadioValue('passengers'),
+            cargo: getCheckboxValues('cargo'),
+            
+            // Sekcja 2: Użytkowanie
+            commute: getRadioValue('commute'),
+            drivingType: getRadioValue('drivingType'),
+            conditions: getCheckboxValues('conditions'),
+            towing: getRadioValue('towing'),
+            keepTime: getRadioValue('keepTime'),
+            
+            // Sekcja 3: Budżet
             budget: budgetValue,
-            interests: getCheckboxValues('interests'),
-            drivingEnv: getRadioValue('drivingEnv'),
+            buyType: getRadioValue('buyType'),
+            financing: getRadioValue('financing'),
+            runningCosts: getRadioValue('runningCosts'),
+            
+            // Sekcja 4: Preferencje pojazdu
+            newUsed: getRadioValue('newUsed'),
+            bodyType: getCheckboxValues('bodyType'),
+            fuelType: getRadioValue('fuelType'),
+            transmission: getRadioValue('transmission'),
+            brands: getCheckboxValues('brands'),
+            
+            // Sekcja 5: Priorytety
             priorities: getPriorityOrder()
         };
 
@@ -312,40 +330,73 @@ function validateCurrentStep() {
                 });
             }
 
-            // Bonus za wiek
-            if (data.age && car.suitableFor.ages.includes(data.age)) {
-                score += 15;
-                matchReasons.push('Idealne dla Twojego wieku');
-            }
-
-            // Bonus za środowisko jazdy
-            if (data.drivingEnv && car.suitableFor.drivingEnv.includes(data.drivingEnv)) {
-                score += 20;
-                matchReasons.push('Świetne do jazdy: ' + formatDrivingEnv(data.drivingEnv));
-            }
-
-            // Bonus za zainteresowania
-            if (data.interests && data.interests.length > 0) {
-                const interestMatches = data.interests.filter(function(interest) {
-                    return car.suitableFor.interests.includes(interest);
-                });
-                score += interestMatches.length * 10;
-                if (interestMatches.length > 0) {
-                    matchReasons.push('Pasuje do Twoich zainteresowań');
+            // Bonus za typ nadwozia
+            if (data.bodyType && data.bodyType.length > 0) {
+                if (data.bodyType.includes(car.bodyType)) {
+                    score += 25;
+                    matchReasons.push('Wybrany typ nadwozia');
                 }
             }
 
-            // Bonus za zawód
-            if (data.profession && car.suitableFor.professions.includes(data.profession)) {
-                score += 15;
+            // Bonus za rodzaj paliwa
+            if (data.fuelType && data.fuelType !== 'obojetne') {
+                if (car.fuelType === data.fuelType) {
+                    score += 20;
+                    matchReasons.push('Preferowany napęd');
+                }
+            }
+
+            // Bonus za środowisko jazdy
+            if (data.drivingType) {
+                if (car.suitableFor && car.suitableFor.drivingEnv && car.suitableFor.drivingEnv.includes(data.drivingType)) {
+                    score += 20;
+                    matchReasons.push('Idealne do: ' + formatDrivingEnv(data.drivingType));
+                }
+            }
+
+            // Bonus za markę
+            if (data.brands && data.brands.length > 0 && !data.brands.includes('inne')) {
+                if (data.brands.includes(car.brand.toLowerCase())) {
+                    score += 30;
+                    matchReasons.push('Preferowana marka');
+                }
+            }
+
+            // Bonus za liczbę pasażerów
+            if (data.passengers) {
+                if (data.passengers === '4+' && car.seats >= 5) {
+                    score += 15;
+                } else if (data.passengers === '2-3' && car.seats >= 4) {
+                    score += 10;
+                }
+            }
+
+            // Bonus za przewożenie rzeczy
+            if (data.cargo && data.cargo.length > 0) {
+                if (data.cargo.includes('dzieci') || data.cargo.includes('wozek')) {
+                    if (car.familyFriendly) {
+                        score += 15;
+                        matchReasons.push('Przyjazny dla rodzin');
+                    }
+                }
+                if (data.cargo.includes('zwierzeta') || data.cargo.includes('rower')) {
+                    if (car.cargoSpace === 'duzy') {
+                        score += 15;
+                    }
+                }
+            }
+
+            // Bonus/kara za koszty eksploatacji
+            if (data.runningCosts === 'bardzo-wazne') {
+                score += (car.scores.spalanie || 5) * 3;
             }
 
             // Obsługa budżetu
             const withinBudget = car.priceMin <= data.budget;
             if (!withinBudget) {
-                score -= 30;
+                score -= 50;
             } else if (car.priceMax <= data.budget) {
-                score += 10;
+                score += 15;
                 matchReasons.push('Mieści się w budżecie');
             }
 
@@ -377,15 +428,15 @@ function validateCurrentStep() {
     // Formatuj priorytet
     function formatPriority(priority) {
         const formats = {
-            'cena': 'Cena',
-            'spalanie': 'Spalanie',
+            'cena': 'Niska cena',
+            'spalanie': 'Niskie spalanie',
             'bezpieczenstwo': 'Bezpieczeństwo',
             'komfort': 'Komfort',
             'osiagi': 'Osiągi',
             'przestrzen': 'Przestronność',
-            'wyposazenie': 'Wyposażenie',
+            'technologia': 'Technologia',
             'niezawodnosc': 'Niezawodność',
-            'marka': 'Marka'
+            'wyglad': 'Wygląd'
         };
         return formats[priority] || priority;
     }
@@ -393,10 +444,10 @@ function validateCurrentStep() {
     // Formatuj środowisko jazdy
     function formatDrivingEnv(env) {
         const formats = {
-            'miasto': 'w mieście',
-            'trasa': 'na trasie',
-            'mieszane': 'wszędzie',
-            'teren': 'w terenie'
+            'miasto': 'jazdy w mieście',
+            'autostrada': 'jazdy na trasie',
+            'mieszane': 'jazdy mieszanej',
+            'wies': 'terenów wiejskich'
         };
         return formats[env] || env;
     }
