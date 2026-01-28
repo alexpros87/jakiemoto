@@ -29,7 +29,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // ===== EVENT LISTENERS =====
     
     // Przycisk Wstecz
-    prevBtn.addEventListener('click', function() {
+    prevBtn.addEventListener('click', function(e) {
+        e.preventDefault();
         console.log('Kliknięto Wstecz');
         if (currentStep > 1) {
             currentStep--;
@@ -38,34 +39,32 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Przycisk Dalej
-    nextBtn.addEventListener('click', function() {
+    nextBtn.addEventListener('click', function(e) {
+        e.preventDefault();
         console.log('Kliknięto Dalej, aktualny krok:', currentStep);
-        if (validateCurrentStep()) {
-            if (currentStep < totalSteps) {
-                currentStep++;
-                updateUI();
-            }
-        }
+        goToNextStep();
     });
 
-    // Wysłanie formularza
-    form.addEventListener('submit', function(e) {
+    // Przycisk Znajdź moje auto (Submit)
+    submitBtn.addEventListener('click', function(e) {
         e.preventDefault();
-        console.log('Formularz wysłany');
+        console.log('Kliknięto Znajdź moje auto');
         if (validateCurrentStep()) {
             handleSubmit();
         }
     });
 
     // Przycisk Zacznij od nowa
-    startOverBtn.addEventListener('click', function() {
+    startOverBtn.addEventListener('click', function(e) {
+        e.preventDefault();
         console.log('Zaczynam od nowa');
         startOver();
     });
 
     // Własny budżet - przycisk
     if (applyBudgetBtn) {
-        applyBudgetBtn.addEventListener('click', function() {
+        applyBudgetBtn.addEventListener('click', function(e) {
+            e.preventDefault();
             applyCustomBudget();
         });
     }
@@ -80,23 +79,19 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Auto-przejście po wyborze opcji (dla radio buttons, oprócz budżetu)
-    document.querySelectorAll('input[type="radio"]').forEach(function(radio) {
-        radio.addEventListener('change', function() {
-            console.log('Wybrano opcję:', this.value);
-            // Nie przechodź automatycznie dla kroku z budżetem (krok 5)
-            if (currentStep !== 5 && currentStep < totalSteps) {
-                setTimeout(function() {
-                    if (validateCurrentStep()) {
-                        currentStep++;
-                        updateUI();
-                    }
-                }, 300);
-            }
-        });
-    });
+    // NIE MA AUTO-PRZEJŚCIA - użytkownik musi kliknąć "Dalej"
 
     // ===== FUNKCJE =====
+
+    // Przejdź do następnego kroku
+    function goToNextStep() {
+        if (validateCurrentStep()) {
+            if (currentStep < totalSteps) {
+                currentStep++;
+                updateUI();
+            }
+        }
+    }
 
     // Aktualizacja interfejsu
     function updateUI() {
@@ -144,7 +139,22 @@ document.addEventListener('DOMContentLoaded', function() {
             return false;
         }
 
-        // Sprawdź radio buttons
+        // Krok 6 (zainteresowania) - checkboxy
+        if (currentStep === 6) {
+            const checkedInterests = currentStepEl.querySelectorAll('input[type="checkbox"]:checked');
+            if (checkedInterests.length === 0) {
+                showAlert('Wybierz przynajmniej jedno zainteresowanie.');
+                return false;
+            }
+            return true;
+        }
+
+        // Krok 8 (priorytety) - zawsze OK, kolejność jest domyślna
+        if (currentStep === 8) {
+            return true;
+        }
+
+        // Sprawdź radio buttons dla innych kroków
         const radios = currentStepEl.querySelectorAll('input[type="radio"]');
         if (radios.length > 0) {
             const groupName = radios[0].name;
@@ -157,26 +167,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     return false;
                 }
             } 
-            // Krok 6 (zainteresowania) - checkboxy
-            else if (currentStep === 6) {
-                const checkedInterests = currentStepEl.querySelectorAll('input[type="checkbox"]:checked');
-                if (checkedInterests.length === 0) {
-                    showAlert('Wybierz przynajmniej jedno zainteresowanie.');
-                    return false;
-                }
-            }
             // Inne kroki z radio
             else if (!checked) {
                 showAlert('Wybierz jedną z opcji.');
-                return false;
-            }
-        }
-
-        // Sprawdź checkboxy (krok 6)
-        if (currentStep === 6) {
-            const checkedInterests = currentStepEl.querySelectorAll('input[type="checkbox"]:checked');
-            if (checkedInterests.length === 0) {
-                showAlert('Wybierz przynajmniej jedno zainteresowanie.');
                 return false;
             }
         }
@@ -248,8 +241,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
         console.log('Dane formularza:', formData);
 
+        // Sprawdź czy carDatabase istnieje
+        if (typeof carDatabase === 'undefined') {
+            console.error('Błąd: carDatabase nie istnieje! Sprawdź czy plik cars.js jest załadowany.');
+            showAlert('Błąd ładowania danych samochodów. Odśwież stronę.');
+            return;
+        }
+
         // Generuj rekomendacje
         const recommendations = generateRecommendations(formData);
+        console.log('Rekomendacje:', recommendations);
         
         // Wyświetl wyniki
         displayResults(recommendations, budgetValue);
@@ -271,6 +272,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Pobierz kolejność priorytetów
     function getPriorityOrder() {
+        if (!priorityList) return [];
         const items = priorityList.querySelectorAll('.priority-item');
         return Array.from(items).map(function(item) {
             return item.dataset.attribute;
@@ -279,48 +281,56 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Generuj rekomendacje
     function generateRecommendations(data) {
-        console.log('Generuję rekomendacje...');
+        console.log('Generuję rekomendacje dla:', data);
 
         const scoredCars = carDatabase.map(function(car) {
             let score = 0;
             let matchReasons = [];
 
             // Punkty za priorytety
-            data.priorities.forEach(function(priority, index) {
-                const weight = (data.priorities.length - index) * 2;
-                const carScore = car.scores[priority] || 0;
-                score += carScore * weight;
-                
-                if (carScore >= 8 && index < 3) {
-                    matchReasons.push('Świetne: ' + formatPriority(priority));
-                }
-            });
+            if (data.priorities && data.priorities.length > 0) {
+                data.priorities.forEach(function(priority, index) {
+                    const weight = (data.priorities.length - index) * 2;
+                    const carScore = car.scores[priority] || 0;
+                    score += carScore * weight;
+                    
+                    if (carScore >= 8 && index < 3) {
+                        matchReasons.push('Świetne: ' + formatPriority(priority));
+                    }
+                });
+            }
 
             // Bonus za wiek
-            if (car.suitableFor.ages.includes(data.age)) {
+            if (data.age && car.suitableFor.ages.includes(data.age)) {
                 score += 15;
                 matchReasons.push('Idealne dla Twojego wieku');
             }
 
             // Bonus za środowisko jazdy
-            if (car.suitableFor.drivingEnv.includes(data.drivingEnv)) {
+            if (data.drivingEnv && car.suitableFor.drivingEnv.includes(data.drivingEnv)) {
                 score += 20;
                 matchReasons.push('Świetne do jazdy: ' + formatDrivingEnv(data.drivingEnv));
             }
 
             // Bonus za zainteresowania
-            const interestMatches = data.interests.filter(function(interest) {
-                return car.suitableFor.interests.includes(interest);
-            });
-            score += interestMatches.length * 10;
+            if (data.interests && data.interests.length > 0) {
+                const interestMatches = data.interests.filter(function(interest) {
+                    return car.suitableFor.interests.includes(interest);
+                });
+                score += interestMatches.length * 10;
+                if (interestMatches.length > 0) {
+                    matchReasons.push('Pasuje do Twoich zainteresowań');
+                }
+            }
 
             // Bonus za zawód
-            if (car.suitableFor.professions.includes(data.profession)) {
+            if (data.profession && car.suitableFor.professions.includes(data.profession)) {
                 score += 15;
             }
 
-            // Kara za przekroczenie budżetu
-            if (car.priceMin > data.budget) {
+            // Obsługa budżetu
+            const withinBudget = car.priceMin <= data.budget;
+            if (!withinBudget) {
                 score -= 30;
             } else if (car.priceMax <= data.budget) {
                 score += 10;
@@ -328,10 +338,19 @@ document.addEventListener('DOMContentLoaded', function() {
             }
 
             return {
-                ...car,
+                id: car.id,
+                name: car.name,
+                brand: car.brand,
+                type: car.type,
+                priceMin: car.priceMin,
+                priceMax: car.priceMax,
+                priceRange: car.priceRange,
+                image: car.image,
+                features: car.features,
+                otomotoSearch: car.otomotoSearch,
                 totalScore: score,
                 matchReasons: matchReasons.slice(0, 3),
-                withinBudget: car.priceMin <= data.budget
+                withinBudget: withinBudget
             };
         });
 
@@ -372,7 +391,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Wyświetl wyniki
     function displayResults(cars, budget) {
-        console.log('Wyświetlam wyniki...');
+        console.log('Wyświetlam wyniki dla', cars.length, 'samochodów');
 
         // Ukryj formularz, pokaż wyniki
         form.style.display = 'none';
@@ -381,31 +400,53 @@ document.addEventListener('DOMContentLoaded', function() {
         resultsSection.style.display = 'block';
 
         // Wyświetl budżet
-        budgetDisplay.textContent = budget.toLocaleString('pl-PL') + ' zł';
+        if (budgetDisplay) {
+            budgetDisplay.textContent = budget.toLocaleString('pl-PL') + ' zł';
+        }
+
+        // Sprawdź czy są wyniki
+        if (cars.length === 0) {
+            carResults.innerHTML = '<div class="no-results"><div class="icon">😔</div><h3>Nie znaleziono samochodów</h3><p>Spróbuj zmienić kryteria wyszukiwania.</p></div>';
+            return;
+        }
 
         // Wygeneruj karty samochodów
         const maxScore = cars[0].totalScore;
 
         let html = '';
         cars.forEach(function(car, index) {
-            const matchPercent = Math.round((car.totalScore / maxScore) * 100);
+            const matchPercent = maxScore > 0 ? Math.round((car.totalScore / maxScore) * 100) : 50;
             const otomotoUrl = 'https://www.otomoto.pl/osobowe/' + car.otomotoSearch;
             const budgetClass = car.withinBudget ? '' : 'out-of-budget';
             const priceClass = car.withinBudget ? 'within-budget' : 'over-budget';
 
-            html += '<div class="car-card ' + budgetClass + '" style="animation-delay: ' + (index * 0.1) + 's">';
+            html += '<div class="car-card ' + budgetClass + '">';
             html += '<div class="car-image">' + car.image + '</div>';
             html += '<div class="car-info">';
             html += '<span class="match-score">🎯 ' + matchPercent + '% dopasowania</span>';
             html += '<h3>' + car.name + '</h3>';
             html += '<p class="car-type">' + car.type + '</p>';
             html += '<p class="car-price ' + priceClass + '">' + car.priceRange + '</p>';
+            
+            if (!car.withinBudget) {
+                html += '<p class="budget-warning">⚠️ Powyżej budżetu</p>';
+            }
+            
             html += '<div class="car-features">';
             car.features.forEach(function(feature) {
                 html += '<span>' + feature + '</span>';
             });
             html += '</div>';
-            html += '<a href="' + otomotoUrl + '" target="_blank" class="car-link">Zobacz na OTOMOTO →</a>';
+            
+            if (car.matchReasons && car.matchReasons.length > 0) {
+                html += '<div class="match-reasons"><ul>';
+                car.matchReasons.forEach(function(reason) {
+                    html += '<li>' + reason + '</li>';
+                });
+                html += '</ul></div>';
+            }
+            
+            html += '<a href="' + otomotoUrl + '" target="_blank" rel="noopener" class="car-link">🔍 Zobacz na OTOMOTO</a>';
             html += '</div>';
             html += '</div>';
         });
@@ -438,7 +479,10 @@ document.addEventListener('DOMContentLoaded', function() {
     // ===== DRAG AND DROP =====
     
     function initDragAndDrop() {
-        if (!priorityList) return;
+        if (!priorityList) {
+            console.log('Lista priorytetów nie znaleziona');
+            return;
+        }
 
         const items = priorityList.querySelectorAll('.priority-item');
         let draggedItem = null;
@@ -457,6 +501,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 document.querySelectorAll('.priority-item').forEach(function(i) {
                     i.classList.remove('drag-over');
                 });
+                draggedItem = null;
             });
 
             item.addEventListener('dragover', function(e) {
@@ -490,18 +535,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
                 this.classList.remove('drag-over');
             });
-
-            // Obsługa dotyku (mobile)
-            item.addEventListener('touchstart', function(e) {
-                draggedItem = this;
-                this.classList.add('dragging');
-            }, { passive: true });
-
-            item.addEventListener('touchend', function() {
-                this.classList.remove('dragging');
-                draggedItem = null;
-            });
         });
+
+        console.log('Drag and drop zainicjalizowany');
     }
 
 });
