@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // ===== ZMIENNE STANU =====
     let currentStep = 1;
-    const totalSteps = 8;
+    const totalSteps = 20;
     let customBudgetValue = null;
 
     // ===== ELEMENTY DOM =====
@@ -128,51 +128,63 @@ document.addEventListener('DOMContentLoaded', function() {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // Walidacja aktualnego kroku
-    function validateCurrentStep() {
-        console.log('Walidacja kroku:', currentStep);
-        
-        const currentStepEl = document.querySelector('.form-step[data-step="' + currentStep + '"]');
-        
-        if (!currentStepEl) {
-            console.error('Nie znaleziono elementu kroku:', currentStep);
+// Walidacja aktualnego kroku
+function validateCurrentStep() {
+    console.log('Walidacja kroku:', currentStep);
+    
+    const currentStepEl = document.querySelector('.form-step[data-step="' + currentStep + '"]');
+    
+    if (!currentStepEl) {
+        console.error('Nie znaleziono elementu kroku:', currentStep);
+        return false;
+    }
+
+    // Kroki z checkboxami (wymagane przynajmniej 1)
+    const checkboxSteps = [3, 5, 8, 16];
+    if (checkboxSteps.includes(currentStep)) {
+        const checkboxName = currentStepEl.querySelector('input[type="checkbox"]').name;
+        const checked = currentStepEl.querySelectorAll('input[name="' + checkboxName + '"]:checked');
+        if (checked.length === 0) {
+            showAlert('Wybierz przynajmniej jedną opcję.');
             return false;
         }
+        return true;
+    }
 
-        // Krok 6 (zainteresowania) - checkboxy
-        if (currentStep === 6) {
-            const checkedInterests = currentStepEl.querySelectorAll('input[type="checkbox"]:checked');
-            if (checkedInterests.length === 0) {
-                showAlert('Wybierz przynajmniej jedno zainteresowanie.');
-                return false;
-            }
-            return true;
-        }
+    // Krok 19 (marki) - opcjonalne, zawsze OK
+    if (currentStep === 19) {
+        return true;
+    }
 
-        // Krok 8 (priorytety) - zawsze OK, kolejność jest domyślna
-        if (currentStep === 8) {
-            return true;
-        }
+    // Krok 20 (priorytety) - zawsze OK
+    if (currentStep === 20) {
+        return true;
+    }
 
-        // Sprawdź radio buttons dla innych kroków
-        const radios = currentStepEl.querySelectorAll('input[type="radio"]');
-        if (radios.length > 0) {
-            const groupName = radios[0].name;
-            const checked = currentStepEl.querySelector('input[name="' + groupName + '"]:checked');
-            
-            // Krok 5 (budżet) - można też użyć własnej kwoty
-            if (currentStep === 5) {
-                if (!checked && !customBudgetValue) {
-                    showAlert('Wybierz budżet lub wpisz własną kwotę.');
-                    return false;
-                }
-            } 
-            // Inne kroki z radio
-            else if (!checked) {
-                showAlert('Wybierz jedną z opcji.');
-                return false;
-            }
+    // Krok 11 (budżet) - można też użyć własnej kwoty
+    if (currentStep === 11) {
+        const checked = currentStepEl.querySelector('input[name="budget"]:checked');
+        if (!checked && !customBudgetValue) {
+            showAlert('Wybierz budżet lub wpisz własną kwotę.');
+            return false;
         }
+        return true;
+    }
+
+    // Inne kroki z radio buttons
+    const radios = currentStepEl.querySelectorAll('input[type="radio"]');
+    if (radios.length > 0) {
+        const groupName = radios[0].name;
+        const checked = currentStepEl.querySelector('input[name="' + groupName + '"]:checked');
+        if (!checked) {
+            showAlert('Wybierz jedną z opcji.');
+            return false;
+        }
+    }
+
+    console.log('Walidacja OK');
+    return true;
+}
 
         console.log('Walidacja OK');
         return true;
