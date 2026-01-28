@@ -39,209 +39,441 @@
             <div class="progress-bar">
                 <div class="progress" id="progress"></div>
             </div>
-            <p class="step-indicator">Krok <span id="currentStep">1</span> z <span id="totalSteps">8</span></p>
+            <p class="step-indicator">Krok <span id="currentStep">1</span> z <span id="totalSteps">20</span></p>
 
             <form id="carQuestionnaireForm">
-                <!-- Krok 1: Płeć (TYLKO 2 OPCJE) -->
+            
+                <!-- ==================== -->
+                <!-- 🧍‍♂️ O TOBIE I STYLU ŻYCIA -->
+                <!-- ==================== -->
+                
+                <!-- Krok 1: Kto będzie głównym kierowcą -->
                 <div class="form-step active" data-step="1">
-                    <h2>Jakiej jesteś płci?</h2>
-                    <div class="options-grid gender-grid">
-                        <label class="option-card">
-                            <input type="radio" name="gender" value="mezczyzna" required>
-                            <span class="option-content">
-                                <span class="icon">👨</span>
-                                <span class="label">Mężczyzna</span>
-                            </span>
-                        </label>
-                        <label class="option-card">
-                            <input type="radio" name="gender" value="kobieta">
-                            <span class="option-content">
-                                <span class="icon">👩</span>
-                                <span class="label">Kobieta</span>
-                            </span>
-                        </label>
-                    </div>
-                </div>
-
-                <!-- Krok 2: Wiek -->
-                <div class="form-step" data-step="2">
-                    <h2>Ile masz lat?</h2>
+                    <div class="section-label">🧍‍♂️ O Tobie i Twoim stylu życia</div>
+                    <h2>Kto będzie głównym kierowcą tego samochodu?</h2>
                     <div class="options-grid">
                         <label class="option-card">
-                            <input type="radio" name="age" value="18-25" required>
+                            <input type="radio" name="mainDriver" value="ja" required>
                             <span class="option-content">
-                                <span class="icon">🎓</span>
-                                <span class="label">18-25 lat</span>
+                                <span class="icon">🙋</span>
+                                <span class="label">Ja</span>
                             </span>
                         </label>
                         <label class="option-card">
-                            <input type="radio" name="age" value="26-35">
+                            <input type="radio" name="mainDriver" value="partner">
                             <span class="option-content">
-                                <span class="icon">💼</span>
-                                <span class="label">26-35 lat</span>
+                                <span class="icon">👫</span>
+                                <span class="label">Mój partner/partnerka</span>
                             </span>
                         </label>
                         <label class="option-card">
-                            <input type="radio" name="age" value="36-45">
+                            <input type="radio" name="mainDriver" value="rodzina">
                             <span class="option-content">
-                                <span class="icon">🏠</span>
-                                <span class="label">36-45 lat</span>
+                                <span class="icon">👨‍👩‍👧</span>
+                                <span class="label">Członek rodziny</span>
                             </span>
                         </label>
                         <label class="option-card">
-                            <input type="radio" name="age" value="46-55">
-                            <span class="option-content">
-                                <span class="icon">👔</span>
-                                <span class="label">46-55 lat</span>
-                            </span>
-                        </label>
-                        <label class="option-card">
-                            <input type="radio" name="age" value="55+">
-                            <span class="option-content">
-                                <span class="icon">🌟</span>
-                                <span class="label">Powyżej 55 lat</span>
-                            </span>
-                        </label>
-                    </div>
-                </div>
-
-                <!-- Krok 3: Wykształcenie -->
-                <div class="form-step" data-step="3">
-                    <h2>Jakie masz wykształcenie?</h2>
-                    <div class="options-grid">
-                        <label class="option-card">
-                            <input type="radio" name="education" value="podstawowe" required>
-                            <span class="option-content">
-                                <span class="icon">📝</span>
-                                <span class="label">Podstawowe</span>
-                            </span>
-                        </label>
-                        <label class="option-card">
-                            <input type="radio" name="education" value="zawodowe">
-                            <span class="option-content">
-                                <span class="icon">🔧</span>
-                                <span class="label">Zawodowe</span>
-                            </span>
-                        </label>
-                        <label class="option-card">
-                            <input type="radio" name="education" value="srednie">
-                            <span class="option-content">
-                                <span class="icon">🏫</span>
-                                <span class="label">Średnie</span>
-                            </span>
-                        </label>
-                        <label class="option-card">
-                            <input type="radio" name="education" value="licencjat">
-                            <span class="option-content">
-                                <span class="icon">🎓</span>
-                                <span class="label">Licencjat / Inżynier</span>
-                            </span>
-                        </label>
-                        <label class="option-card">
-                            <input type="radio" name="education" value="magister">
-                            <span class="option-content">
-                                <span class="icon">📚</span>
-                                <span class="label">Magister</span>
-                            </span>
-                        </label>
-                        <label class="option-card">
-                            <input type="radio" name="education" value="doktorat">
-                            <span class="option-content">
-                                <span class="icon">🎖️</span>
-                                <span class="label">Doktorat</span>
-                            </span>
-                        </label>
-                    </div>
-                </div>
-
-                <!-- Krok 4: Zawód -->
-                <div class="form-step" data-step="4">
-                    <h2>Czym się zajmujesz?</h2>
-                    <div class="options-grid profession-grid">
-                        <label class="option-card">
-                            <input type="radio" name="profession" value="student" required>
-                            <span class="option-content">
-                                <span class="icon">📖</span>
-                                <span class="label">Student / Uczeń</span>
-                            </span>
-                        </label>
-                        <label class="option-card">
-                            <input type="radio" name="profession" value="it">
-                            <span class="option-content">
-                                <span class="icon">💻</span>
-                                <span class="label">IT / Programista</span>
-                            </span>
-                        </label>
-                        <label class="option-card">
-                            <input type="radio" name="profession" value="medycyna">
-                            <span class="option-content">
-                                <span class="icon">🏥</span>
-                                <span class="label">Medycyna</span>
-                            </span>
-                        </label>
-                        <label class="option-card">
-                            <input type="radio" name="profession" value="finanse">
-                            <span class="option-content">
-                                <span class="icon">💰</span>
-                                <span class="label">Finanse / Bankowość</span>
-                            </span>
-                        </label>
-                        <label class="option-card">
-                            <input type="radio" name="profession" value="wlasciciel">
-                            <span class="option-content">
-                                <span class="icon">🏢</span>
-                                <span class="label">Właściciel firmy</span>
-                            </span>
-                        </label>
-                        <label class="option-card">
-                            <input type="radio" name="profession" value="kreatywny">
-                            <span class="option-content">
-                                <span class="icon">🎨</span>
-                                <span class="label">Branża kreatywna</span>
-                            </span>
-                        </label>
-                        <label class="option-card">
-                            <input type="radio" name="profession" value="budownictwo">
-                            <span class="option-content">
-                                <span class="icon">🔨</span>
-                                <span class="label">Budownictwo / Rzemiosło</span>
-                            </span>
-                        </label>
-                        <label class="option-card">
-                            <input type="radio" name="profession" value="sprzedaz">
-                            <span class="option-content">
-                                <span class="icon">📊</span>
-                                <span class="label">Sprzedaż / Marketing</span>
-                            </span>
-                        </label>
-                        <label class="option-card">
-                            <input type="radio" name="profession" value="emeryt">
-                            <span class="option-content">
-                                <span class="icon">🌴</span>
-                                <span class="label">Emeryt / Rencista</span>
-                            </span>
-                        </label>
-                        <label class="option-card">
-                            <input type="radio" name="profession" value="inny">
+                            <input type="radio" name="mainDriver" value="wspolne">
                             <span class="option-content">
                                 <span class="icon">🔄</span>
-                                <span class="label">Inny zawód</span>
+                                <span class="label">Wspólne użytkowanie</span>
                             </span>
                         </label>
                     </div>
                 </div>
 
-                <!-- Krok 5: Budżet -->
+                <!-- Krok 2: Główne czy dodatkowe auto -->
+                <div class="form-step" data-step="2">
+                    <div class="section-label">🧍‍♂️ O Tobie i Twoim stylu życia</div>
+                    <h2>Czy to będzie Twój główny samochód czy dodatkowy?</h2>
+                    <div class="options-grid">
+                        <label class="option-card">
+                            <input type="radio" name="carType" value="glowny" required>
+                            <span class="option-content">
+                                <span class="icon">🚗</span>
+                                <span class="label">Główny samochód</span>
+                                <span class="description">Jedyny lub najczęściej używany</span>
+                            </span>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="carType" value="dodatkowy">
+                            <span class="option-content">
+                                <span class="icon">🚙</span>
+                                <span class="label">Dodatkowy samochód</span>
+                                <span class="description">Drugi lub trzeci w rodzinie</span>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Krok 3: Do czego będziesz używać -->
+                <div class="form-step" data-step="3">
+                    <div class="section-label">🧍‍♂️ O Tobie i Twoim stylu życia</div>
+                    <h2>Do czego głównie będziesz używać samochodu?</h2>
+                    <p class="step-description">Wybierz wszystkie pasujące opcje</p>
+                    <div class="options-grid">
+                        <label class="option-card checkbox">
+                            <input type="checkbox" name="carUsage" value="dojazdy">
+                            <span class="option-content">
+                                <span class="icon">🏢</span>
+                                <span class="label">Dojazdy do pracy</span>
+                            </span>
+                        </label>
+                        <label class="option-card checkbox">
+                            <input type="checkbox" name="carUsage" value="rodzina">
+                            <span class="option-content">
+                                <span class="icon">👨‍👩‍👧‍👦</span>
+                                <span class="label">Wycieczki rodzinne</span>
+                            </span>
+                        </label>
+                        <label class="option-card checkbox">
+                            <input type="checkbox" name="carUsage" value="praca">
+                            <span class="option-content">
+                                <span class="icon">💼</span>
+                                <span class="label">Cele służbowe</span>
+                            </span>
+                        </label>
+                        <label class="option-card checkbox">
+                            <input type="checkbox" name="carUsage" value="weekend">
+                            <span class="option-content">
+                                <span class="icon">🎉</span>
+                                <span class="label">Weekendowa rozrywka</span>
+                            </span>
+                        </label>
+                        <label class="option-card checkbox">
+                            <input type="checkbox" name="carUsage" value="zakupy">
+                            <span class="option-content">
+                                <span class="icon">🛒</span>
+                                <span class="label">Zakupy i sprawunki</span>
+                            </span>
+                        </label>
+                        <label class="option-card checkbox">
+                            <input type="checkbox" name="carUsage" value="podroze">
+                            <span class="option-content">
+                                <span class="icon">🗺️</span>
+                                <span class="label">Długie podróże</span>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Krok 4: Liczba pasażerów -->
+                <div class="form-step" data-step="4">
+                    <div class="section-label">🧍‍♂️ O Tobie i Twoim stylu życia</div>
+                    <h2>Ilu pasażerów zwykle przewozisz?</h2>
+                    <div class="options-grid">
+                        <label class="option-card">
+                            <input type="radio" name="passengers" value="0" required>
+                            <span class="option-content">
+                                <span class="icon">🧑</span>
+                                <span class="label">Tylko ja</span>
+                            </span>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="passengers" value="1">
+                            <span class="option-content">
+                                <span class="icon">👥</span>
+                                <span class="label">1 pasażer</span>
+                            </span>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="passengers" value="2-3">
+                            <span class="option-content">
+                                <span class="icon">👨‍👩‍👦</span>
+                                <span class="label">2-3 osoby</span>
+                            </span>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="passengers" value="4+">
+                            <span class="option-content">
+                                <span class="icon">👨‍👩‍👧‍👦</span>
+                                <span class="label">4 lub więcej</span>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Krok 5: Zwierzęta, dzieci, sprzęt -->
                 <div class="form-step" data-step="5">
-                    <h2>Jaki masz budżet na auto?</h2>
-                    <p class="step-description">Wybierz maksymalną kwotę, którą chcesz przeznaczyć na zakup</p>
+                    <div class="section-label">🧍‍♂️ O Tobie i Twoim stylu życia</div>
+                    <h2>Czy przewozisz regularnie coś z poniższych?</h2>
+                    <p class="step-description">Wybierz wszystkie pasujące opcje</p>
+                    <div class="options-grid">
+                        <label class="option-card checkbox">
+                            <input type="checkbox" name="cargo" value="dzieci">
+                            <span class="option-content">
+                                <span class="icon">👶</span>
+                                <span class="label">Małe dzieci / foteliki</span>
+                            </span>
+                        </label>
+                        <label class="option-card checkbox">
+                            <input type="checkbox" name="cargo" value="zwierzeta">
+                            <span class="option-content">
+                                <span class="icon">🐕</span>
+                                <span class="label">Zwierzęta</span>
+                            </span>
+                        </label>
+                        <label class="option-card checkbox">
+                            <input type="checkbox" name="cargo" value="rower">
+                            <span class="option-content">
+                                <span class="icon">🚴</span>
+                                <span class="label">Rowery / sprzęt sportowy</span>
+                            </span>
+                        </label>
+                        <label class="option-card checkbox">
+                            <input type="checkbox" name="cargo" value="narzedzia">
+                            <span class="option-content">
+                                <span class="icon">🧰</span>
+                                <span class="label">Narzędzia / sprzęt roboczy</span>
+                            </span>
+                        </label>
+                        <label class="option-card checkbox">
+                            <input type="checkbox" name="cargo" value="wozek">
+                            <span class="option-content">
+                                <span class="icon">🛒</span>
+                                <span class="label">Wózek dziecięcy</span>
+                            </span>
+                        </label>
+                        <label class="option-card checkbox">
+                            <input type="checkbox" name="cargo" value="nic">
+                            <span class="option-content">
+                                <span class="icon">✨</span>
+                                <span class="label">Nic specjalnego</span>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- ==================== -->
+                <!-- 🚗 UŻYTKOWANIE I NAWYKI JAZDY -->
+                <!-- ==================== -->
+
+                <!-- Krok 6: Codzienny dojazd -->
+                <div class="form-step" data-step="6">
+                    <div class="section-label">🚗 Użytkowanie i nawyki jazdy</div>
+                    <h2>Jak daleko masz codzienny dojazd?</h2>
+                    <div class="options-grid">
+                        <label class="option-card">
+                            <input type="radio" name="commute" value="0-10" required>
+                            <span class="option-content">
+                                <span class="icon">🏠</span>
+                                <span class="label">Do 10 km</span>
+                                <span class="description">Krótkie dystanse</span>
+                            </span>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="commute" value="10-30">
+                            <span class="option-content">
+                                <span class="icon">🚗</span>
+                                <span class="label">10-30 km</span>
+                                <span class="description">Średnie dystanse</span>
+                            </span>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="commute" value="30-50">
+                            <span class="option-content">
+                                <span class="icon">🛣️</span>
+                                <span class="label">30-50 km</span>
+                                <span class="description">Dłuższe dojazdy</span>
+                            </span>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="commute" value="50+">
+                            <span class="option-content">
+                                <span class="icon">🌍</span>
+                                <span class="label">Ponad 50 km</span>
+                                <span class="description">Długie trasy</span>
+                            </span>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="commute" value="praca-zdalna">
+                            <span class="option-content">
+                                <span class="icon">💻</span>
+                                <span class="label">Praca zdalna</span>
+                                <span class="description">Nie dojeżdżam codziennie</span>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Krok 7: Typ jazdy -->
+                <div class="form-step" data-step="7">
+                    <div class="section-label">🚗 Użytkowanie i nawyki jazdy</div>
+                    <h2>Gdzie głównie jeździsz?</h2>
+                    <div class="options-grid">
+                        <label class="option-card">
+                            <input type="radio" name="drivingType" value="miasto" required>
+                            <span class="option-content">
+                                <span class="icon">🏙️</span>
+                                <span class="label">Głównie miasto</span>
+                                <span class="description">Korki, parkowanie</span>
+                            </span>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="drivingType" value="autostrada">
+                            <span class="option-content">
+                                <span class="icon">🛣️</span>
+                                <span class="label">Głównie autostrada/trasa</span>
+                                <span class="description">Długie, szybkie odcinki</span>
+                            </span>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="drivingType" value="mieszane">
+                            <span class="option-content">
+                                <span class="icon">🔀</span>
+                                <span class="label">Mieszane</span>
+                                <span class="description">Miasto i trasa po równo</span>
+                            </span>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="drivingType" value="wies">
+                            <span class="option-content">
+                                <span class="icon">🌾</span>
+                                <span class="label">Tereny wiejskie</span>
+                                <span class="description">Drogi lokalne, polne</span>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Krok 8: Trudne warunki -->
+                <div class="form-step" data-step="8">
+                    <div class="section-label">🚗 Użytkowanie i nawyki jazdy</div>
+                    <h2>Czy jeździsz w trudnych warunkach?</h2>
+                    <p class="step-description">Wybierz wszystkie pasujące opcje</p>
+                    <div class="options-grid">
+                        <label class="option-card checkbox">
+                            <input type="checkbox" name="conditions" value="snieg">
+                            <span class="option-content">
+                                <span class="icon">❄️</span>
+                                <span class="label">Śnieg i lód</span>
+                            </span>
+                        </label>
+                        <label class="option-card checkbox">
+                            <input type="checkbox" name="conditions" value="offroad">
+                            <span class="option-content">
+                                <span class="icon">🏔️</span>
+                                <span class="label">Teren / off-road</span>
+                            </span>
+                        </label>
+                        <label class="option-card checkbox">
+                            <input type="checkbox" name="conditions" value="deszcz">
+                            <span class="option-content">
+                                <span class="icon">🌧️</span>
+                                <span class="label">Częste ulewy</span>
+                            </span>
+                        </label>
+                        <label class="option-card checkbox">
+                            <input type="checkbox" name="conditions" value="gory">
+                            <span class="option-content">
+                                <span class="icon">⛰️</span>
+                                <span class="label">Górskie drogi</span>
+                            </span>
+                        </label>
+                        <label class="option-card checkbox">
+                            <input type="checkbox" name="conditions" value="normalne">
+                            <span class="option-content">
+                                <span class="icon">☀️</span>
+                                <span class="label">Normalne warunki</span>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Krok 9: Holowanie -->
+                <div class="form-step" data-step="9">
+                    <div class="section-label">🚗 Użytkowanie i nawyki jazdy</div>
+                    <h2>Czy potrzebujesz możliwości holowania?</h2>
+                    <div class="options-grid">
+                        <label class="option-card">
+                            <input type="radio" name="towing" value="nie" required>
+                            <span class="option-content">
+                                <span class="icon">❌</span>
+                                <span class="label">Nie potrzebuję</span>
+                            </span>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="towing" value="lekkie">
+                            <span class="option-content">
+                                <span class="icon">🚲</span>
+                                <span class="label">Lekka przyczepa</span>
+                                <span class="description">Do 750 kg</span>
+                            </span>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="towing" value="srednie">
+                            <span class="option-content">
+                                <span class="icon">🏕️</span>
+                                <span class="label">Przyczepa kempingowa</span>
+                                <span class="description">750-1500 kg</span>
+                            </span>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="towing" value="ciezkie">
+                            <span class="option-content">
+                                <span class="icon">🚤</span>
+                                <span class="label">Ciężka przyczepa / łódź</span>
+                                <span class="description">Ponad 1500 kg</span>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Krok 10: Jak długo trzymasz auto -->
+                <div class="form-step" data-step="10">
+                    <div class="section-label">🚗 Użytkowanie i nawyki jazdy</div>
+                    <h2>Jak długo zwykle trzymasz samochód?</h2>
+                    <div class="options-grid">
+                        <label class="option-card">
+                            <input type="radio" name="keepTime" value="1-2" required>
+                            <span class="option-content">
+                                <span class="icon">📅</span>
+                                <span class="label">1-2 lata</span>
+                                <span class="description">Często zmieniam</span>
+                            </span>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="keepTime" value="3-5">
+                            <span class="option-content">
+                                <span class="icon">📆</span>
+                                <span class="label">3-5 lat</span>
+                                <span class="description">Średni okres</span>
+                            </span>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="keepTime" value="5-10">
+                            <span class="option-content">
+                                <span class="icon">🗓️</span>
+                                <span class="label">5-10 lat</span>
+                                <span class="description">Długoterminowo</span>
+                            </span>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="keepTime" value="10+">
+                            <span class="option-content">
+                                <span class="icon">♾️</span>
+                                <span class="label">Ponad 10 lat</span>
+                                <span class="description">Do końca eksploatacji</span>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- ==================== -->
+                <!-- 💰 BUDŻET I PREFERENCJE ZAKUPOWE -->
+                <!-- ==================== -->
+
+                <!-- Krok 11: Budżet -->
+                <div class="form-step" data-step="11">
+                    <div class="section-label">💰 Budżet i preferencje zakupowe</div>
+                    <h2>Jaki masz budżet na samochód?</h2>
                     <div class="options-grid budget-grid">
                         <label class="option-card">
                             <input type="radio" name="budget" value="30000" required>
                             <span class="option-content">
                                 <span class="icon">💵</span>
                                 <span class="label">Do 30 000 zł</span>
-                                <span class="description">Używane, starsze roczniki</span>
                             </span>
                         </label>
                         <label class="option-card">
@@ -249,7 +481,6 @@
                             <span class="option-content">
                                 <span class="icon">💵</span>
                                 <span class="label">30 000 - 50 000 zł</span>
-                                <span class="description">Kompakty używane</span>
                             </span>
                         </label>
                         <label class="option-card">
@@ -257,7 +488,6 @@
                             <span class="option-content">
                                 <span class="icon">💰</span>
                                 <span class="label">50 000 - 80 000 zł</span>
-                                <span class="description">Nowe miejskie / używane SUV</span>
                             </span>
                         </label>
                         <label class="option-card">
@@ -265,7 +495,6 @@
                             <span class="option-content">
                                 <span class="icon">💰</span>
                                 <span class="label">80 000 - 120 000 zł</span>
-                                <span class="description">Klasa średnia</span>
                             </span>
                         </label>
                         <label class="option-card">
@@ -273,7 +502,6 @@
                             <span class="option-content">
                                 <span class="icon">💎</span>
                                 <span class="label">120 000 - 180 000 zł</span>
-                                <span class="description">Premium i nowe SUV</span>
                             </span>
                         </label>
                         <label class="option-card">
@@ -281,19 +509,16 @@
                             <span class="option-content">
                                 <span class="icon">💎</span>
                                 <span class="label">180 000 - 250 000 zł</span>
-                                <span class="description">Luksusowe</span>
                             </span>
                         </label>
                         <label class="option-card">
                             <input type="radio" name="budget" value="999999">
                             <span class="option-content">
                                 <span class="icon">👑</span>
-                                <span class="label">Powyżej 250 000 zł</span>
-                                <span class="description">Bez limitu</span>
+                                <span class="label">Ponad 250 000 zł</span>
                             </span>
                         </label>
                     </div>
-                    
                     <div class="custom-budget-section">
                         <p>Lub wpisz własną kwotę:</p>
                         <div class="budget-input-wrapper">
@@ -304,158 +529,452 @@
                     </div>
                 </div>
 
-                <!-- Krok 6: Zainteresowania -->
-                <div class="form-step" data-step="6">
-                    <h2>Jakie są Twoje zainteresowania?</h2>
-                    <p class="step-description">Wybierz wszystkie, które do Ciebie pasują</p>
-                    <div class="options-grid interests-grid">
-                        <label class="option-card checkbox">
-                            <input type="checkbox" name="interests" value="rodzina">
-                            <span class="option-content">
-                                <span class="icon">👨‍👩‍👧‍👦</span>
-                                <span class="label">Rodzina</span>
-                            </span>
-                        </label>
-                        <label class="option-card checkbox">
-                            <input type="checkbox" name="interests" value="sport">
-                            <span class="option-content">
-                                <span class="icon">⚽</span>
-                                <span class="label">Sport</span>
-                            </span>
-                        </label>
-                        <label class="option-card checkbox">
-                            <input type="checkbox" name="interests" value="outdoor">
-                            <span class="option-content">
-                                <span class="icon">🏕️</span>
-                                <span class="label">Natura / Przygoda</span>
-                            </span>
-                        </label>
-                        <label class="option-card checkbox">
-                            <input type="checkbox" name="interests" value="technologia">
-                            <span class="option-content">
-                                <span class="icon">🤖</span>
-                                <span class="label">Technologia</span>
-                            </span>
-                        </label>
-                        <label class="option-card checkbox">
-                            <input type="checkbox" name="interests" value="podroze">
-                            <span class="option-content">
-                                <span class="icon">✈️</span>
-                                <span class="label">Podróże</span>
-                            </span>
-                        </label>
-                        <label class="option-card checkbox">
-                            <input type="checkbox" name="interests" value="luksus">
-                            <span class="option-content">
-                                <span class="icon">💎</span>
-                                <span class="label">Luksus / Prestiż</span>
-                            </span>
-                        </label>
-                        <label class="option-card checkbox">
-                            <input type="checkbox" name="interests" value="ekologia">
-                            <span class="option-content">
-                                <span class="icon">🌱</span>
-                                <span class="label">Ekologia</span>
-                            </span>
-                        </label>
-                        <label class="option-card checkbox">
-                            <input type="checkbox" name="interests" value="predkosc">
-                            <span class="option-content">
-                                <span class="icon">🏎️</span>
-                                <span class="label">Prędkość / Osiągi</span>
-                            </span>
-                        </label>
-                    </div>
-                </div>
-
-                <!-- Krok 7: Środowisko jazdy -->
-                <div class="form-step" data-step="7">
-                    <h2>Gdzie będziesz głównie jeździć?</h2>
+                <!-- Krok 12: Kupno czy leasing -->
+                <div class="form-step" data-step="12">
+                    <div class="section-label">💰 Budżet i preferencje zakupowe</div>
+                    <h2>Planujesz kupić czy wziąć w leasing?</h2>
                     <div class="options-grid">
                         <label class="option-card">
-                            <input type="radio" name="drivingEnv" value="miasto" required>
+                            <input type="radio" name="buyType" value="kupno" required>
                             <span class="option-content">
-                                <span class="icon">🏙️</span>
-                                <span class="label">Miasto</span>
-                                <span class="description">Korki, parkowanie, krótkie trasy</span>
+                                <span class="icon">🏠</span>
+                                <span class="label">Kupno na własność</span>
                             </span>
                         </label>
                         <label class="option-card">
-                            <input type="radio" name="drivingEnv" value="trasa">
+                            <input type="radio" name="buyType" value="leasing">
                             <span class="option-content">
-                                <span class="icon">🛣️</span>
-                                <span class="label">Trasa / Autostrada</span>
-                                <span class="description">Długie dystanse, komfort</span>
+                                <span class="icon">📋</span>
+                                <span class="label">Leasing</span>
                             </span>
                         </label>
                         <label class="option-card">
-                            <input type="radio" name="drivingEnv" value="mieszane">
+                            <input type="radio" name="buyType" value="wynajem">
                             <span class="option-content">
-                                <span class="icon">🔀</span>
-                                <span class="label">Mieszane</span>
-                                <span class="description">Miasto i trasa po równo</span>
+                                <span class="icon">🔄</span>
+                                <span class="label">Wynajem długoterminowy</span>
                             </span>
                         </label>
                         <label class="option-card">
-                            <input type="radio" name="drivingEnv" value="teren">
+                            <input type="radio" name="buyType" value="nie-wiem">
                             <span class="option-content">
-                                <span class="icon">🏔️</span>
-                                <span class="label">Teren / Wieś</span>
-                                <span class="description">Drogi nieutwardzone</span>
+                                <span class="icon">🤔</span>
+                                <span class="label">Jeszcze nie wiem</span>
                             </span>
                         </label>
                     </div>
                 </div>
 
-                <!-- Krok 8: Priorytety -->
-                <div class="form-step" data-step="8">
+                <!-- Krok 13: Forma płatności -->
+                <div class="form-step" data-step="13">
+                    <div class="section-label">💰 Budżet i preferencje zakupowe</div>
+                    <h2>Jak planujesz sfinansować zakup?</h2>
+                    <div class="options-grid">
+                        <label class="option-card">
+                            <input type="radio" name="financing" value="gotowka" required>
+                            <span class="option-content">
+                                <span class="icon">💵</span>
+                                <span class="label">Gotówka</span>
+                                <span class="description">Płacę od razu całość</span>
+                            </span>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="financing" value="kredyt">
+                            <span class="option-content">
+                                <span class="icon">🏦</span>
+                                <span class="label">Kredyt samochodowy</span>
+                                <span class="description">Raty w banku</span>
+                            </span>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="financing" value="zamiana">
+                            <span class="option-content">
+                                <span class="icon">🔄</span>
+                                <span class="label">Zamiana starego auta</span>
+                                <span class="description">Trade-in + dopłata</span>
+                            </span>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="financing" value="mieszane">
+                            <span class="option-content">
+                                <span class="icon">🔀</span>
+                                <span class="label">Kombinacja powyższych</span>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Krok 14: Ważność kosztów eksploatacji -->
+                <div class="form-step" data-step="14">
+                    <div class="section-label">💰 Budżet i preferencje zakupowe</div>
+                    <h2>Jak ważne są dla Ciebie koszty paliwa i serwisu?</h2>
+                    <div class="options-grid">
+                        <label class="option-card">
+                            <input type="radio" name="runningCosts" value="bardzo-wazne" required>
+                            <span class="option-content">
+                                <span class="icon">⭐⭐⭐</span>
+                                <span class="label">Bardzo ważne</span>
+                                <span class="description">Priorytet to niskie koszty</span>
+                            </span>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="runningCosts" value="wazne">
+                            <span class="option-content">
+                                <span class="icon">⭐⭐</span>
+                                <span class="label">Dość ważne</span>
+                                <span class="description">Zwracam uwagę</span>
+                            </span>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="runningCosts" value="srednie">
+                            <span class="option-content">
+                                <span class="icon">⭐</span>
+                                <span class="label">Średnio ważne</span>
+                                <span class="description">Jeden z czynników</span>
+                            </span>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="runningCosts" value="malo-wazne">
+                            <span class="option-content">
+                                <span class="icon">➖</span>
+                                <span class="label">Mało ważne</span>
+                                <span class="description">Inne rzeczy są ważniejsze</span>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- ==================== -->
+                <!-- ⚙️ PREFERENCJE POJAZDU -->
+                <!-- ==================== -->
+
+                <!-- Krok 15: Nowe czy używane -->
+                <div class="form-step" data-step="15">
+                    <div class="section-label">⚙️ Preferencje pojazdu</div>
+                    <h2>Wolisz auto nowe czy używane?</h2>
+                    <div class="options-grid">
+                        <label class="option-card">
+                            <input type="radio" name="newUsed" value="nowe" required>
+                            <span class="option-content">
+                                <span class="icon">✨</span>
+                                <span class="label">Nowe</span>
+                                <span class="description">Prosto z salonu</span>
+                            </span>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="newUsed" value="poleasingowe">
+                            <span class="option-content">
+                                <span class="icon">🏷️</span>
+                                <span class="label">Poleasingowe / demo</span>
+                                <span class="description">Jak nowe, niższa cena</span>
+                            </span>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="newUsed" value="uzywane">
+                            <span class="option-content">
+                                <span class="icon">🚗</span>
+                                <span class="label">Używane</span>
+                                <span class="description">Najlepsza wartość</span>
+                            </span>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="newUsed" value="obojetne">
+                            <span class="option-content">
+                                <span class="icon">🔀</span>
+                                <span class="label">Bez znaczenia</span>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Krok 16: Typ nadwozia -->
+                <div class="form-step" data-step="16">
+                    <div class="section-label">⚙️ Preferencje pojazdu</div>
+                    <h2>Jaki typ nadwozia Cię interesuje?</h2>
+                    <p class="step-description">Wybierz wszystkie pasujące opcje</p>
+                    <div class="options-grid">
+                        <label class="option-card checkbox">
+                            <input type="checkbox" name="bodyType" value="hatchback">
+                            <span class="option-content">
+                                <span class="icon">🚗</span>
+                                <span class="label">Hatchback</span>
+                            </span>
+                        </label>
+                        <label class="option-card checkbox">
+                            <input type="checkbox" name="bodyType" value="sedan">
+                            <span class="option-content">
+                                <span class="icon">🚘</span>
+                                <span class="label">Sedan</span>
+                            </span>
+                        </label>
+                        <label class="option-card checkbox">
+                            <input type="checkbox" name="bodyType" value="kombi">
+                            <span class="option-content">
+                                <span class="icon">🚙</span>
+                                <span class="label">Kombi</span>
+                            </span>
+                        </label>
+                        <label class="option-card checkbox">
+                            <input type="checkbox" name="bodyType" value="suv">
+                            <span class="option-content">
+                                <span class="icon">🚙</span>
+                                <span class="label">SUV / Crossover</span>
+                            </span>
+                        </label>
+                        <label class="option-card checkbox">
+                            <input type="checkbox" name="bodyType" value="pickup">
+                            <span class="option-content">
+                                <span class="icon">🛻</span>
+                                <span class="label">Pickup</span>
+                            </span>
+                        </label>
+                        <label class="option-card checkbox">
+                            <input type="checkbox" name="bodyType" value="van">
+                            <span class="option-content">
+                                <span class="icon">🚐</span>
+                                <span class="label">Van / Minivan</span>
+                            </span>
+                        </label>
+                        <label class="option-card checkbox">
+                            <input type="checkbox" name="bodyType" value="coupe">
+                            <span class="option-content">
+                                <span class="icon">🏎️</span>
+                                <span class="label">Coupe / Sportowe</span>
+                            </span>
+                        </label>
+                        <label class="option-card checkbox">
+                            <input type="checkbox" name="bodyType" value="kabriolet">
+                            <span class="option-content">
+                                <span class="icon">🚗</span>
+                                <span class="label">Kabriolet</span>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Krok 17: Rodzaj napędu -->
+                <div class="form-step" data-step="17">
+                    <div class="section-label">⚙️ Preferencje pojazdu</div>
+                    <h2>Jaki rodzaj napędu preferujesz?</h2>
+                    <div class="options-grid">
+                        <label class="option-card">
+                            <input type="radio" name="fuelType" value="benzyna" required>
+                            <span class="option-content">
+                                <span class="icon">⛽</span>
+                                <span class="label">Benzyna</span>
+                            </span>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="fuelType" value="diesel">
+                            <span class="option-content">
+                                <span class="icon">🛢️</span>
+                                <span class="label">Diesel</span>
+                            </span>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="fuelType" value="hybryda">
+                            <span class="option-content">
+                                <span class="icon">🔋</span>
+                                <span class="label">Hybryda</span>
+                            </span>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="fuelType" value="phev">
+                            <span class="option-content">
+                                <span class="icon">🔌</span>
+                                <span class="label">Hybryda plug-in</span>
+                            </span>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="fuelType" value="elektryczny">
+                            <span class="option-content">
+                                <span class="icon">⚡</span>
+                                <span class="label">Elektryczny</span>
+                            </span>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="fuelType" value="lpg">
+                            <span class="option-content">
+                                <span class="icon">💨</span>
+                                <span class="label">LPG</span>
+                            </span>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="fuelType" value="obojetne">
+                            <span class="option-content">
+                                <span class="icon">🔀</span>
+                                <span class="label">Bez znaczenia</span>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Krok 18: Skrzynia biegów -->
+                <div class="form-step" data-step="18">
+                    <div class="section-label">⚙️ Preferencje pojazdu</div>
+                    <h2>Skrzynia manualna czy automatyczna?</h2>
+                    <div class="options-grid">
+                        <label class="option-card">
+                            <input type="radio" name="transmission" value="manualna" required>
+                            <span class="option-content">
+                                <span class="icon">🕹️</span>
+                                <span class="label">Manualna</span>
+                                <span class="description">Pełna kontrola</span>
+                            </span>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="transmission" value="automatyczna">
+                            <span class="option-content">
+                                <span class="icon">🅰️</span>
+                                <span class="label">Automatyczna</span>
+                                <span class="description">Wygoda w korkach</span>
+                            </span>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="transmission" value="obojetne">
+                            <span class="option-content">
+                                <span class="icon">🔀</span>
+                                <span class="label">Bez znaczenia</span>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Krok 19: Preferowane / unikane marki -->
+                <div class="form-step" data-step="19">
+                    <div class="section-label">⚙️ Preferencje pojazdu</div>
+                    <h2>Czy masz ulubione marki?</h2>
+                    <p class="step-description">Wybierz marki, które Cię interesują (opcjonalne)</p>
+                    <div class="options-grid brands-grid">
+                        <label class="option-card checkbox">
+                            <input type="checkbox" name="brands" value="toyota">
+                            <span class="option-content">
+                                <span class="label">Toyota</span>
+                            </span>
+                        </label>
+                        <label class="option-card checkbox">
+                            <input type="checkbox" name="brands" value="volkswagen">
+                            <span class="option-content">
+                                <span class="label">Volkswagen</span>
+                            </span>
+                        </label>
+                        <label class="option-card checkbox">
+                            <input type="checkbox" name="brands" value="skoda">
+                            <span class="option-content">
+                                <span class="label">Skoda</span>
+                            </span>
+                        </label>
+                        <label class="option-card checkbox">
+                            <input type="checkbox" name="brands" value="bmw">
+                            <span class="option-content">
+                                <span class="label">BMW</span>
+                            </span>
+                        </label>
+                        <label class="option-card checkbox">
+                            <input type="checkbox" name="brands" value="mercedes">
+                            <span class="option-content">
+                                <span class="label">Mercedes</span>
+                            </span>
+                        </label>
+                        <label class="option-card checkbox">
+                            <input type="checkbox" name="brands" value="audi">
+                            <span class="option-content">
+                                <span class="label">Audi</span>
+                            </span>
+                        </label>
+                        <label class="option-card checkbox">
+                            <input type="checkbox" name="brands" value="ford">
+                            <span class="option-content">
+                                <span class="label">Ford</span>
+                            </span>
+                        </label>
+                        <label class="option-card checkbox">
+                            <input type="checkbox" name="brands" value="hyundai">
+                            <span class="option-content">
+                                <span class="label">Hyundai</span>
+                            </span>
+                        </label>
+                        <label class="option-card checkbox">
+                            <input type="checkbox" name="brands" value="kia">
+                            <span class="option-content">
+                                <span class="label">Kia</span>
+                            </span>
+                        </label>
+                        <label class="option-card checkbox">
+                            <input type="checkbox" name="brands" value="mazda">
+                            <span class="option-content">
+                                <span class="label">Mazda</span>
+                            </span>
+                        </label>
+                        <label class="option-card checkbox">
+                            <input type="checkbox" name="brands" value="volvo">
+                            <span class="option-content">
+                                <span class="label">Volvo</span>
+                            </span>
+                        </label>
+                        <label class="option-card checkbox">
+                            <input type="checkbox" name="brands" value="inne">
+                            <span class="option-content">
+                                <span class="label">Inne / Wszystkie</span>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- ==================== -->
+                <!-- 🧠 FUNKCJE I PRIORYTETY -->
+                <!-- ==================== -->
+
+                <!-- Krok 20: Priorytety -->
+                <div class="form-step" data-step="20">
+                    <div class="section-label">🧠 Funkcje i priorytety</div>
                     <h2>Co jest dla Ciebie najważniejsze?</h2>
                     <p class="hint">Przeciągnij od najważniejszego (góra) do najmniej ważnego (dół)</p>
                     <ul id="priorityList" class="priority-list">
-                        <li data-attribute="cena" class="priority-item">
+                        <li data-attribute="bezpieczenstwo" class="priority-item">
                             <span class="drag-handle">☰</span>
-                            <span class="priority-icon">💵</span>
-                            <span class="priority-label">Niska cena</span>
+                            <span class="priority-icon">🛡️</span>
+                            <span class="priority-label">Bezpieczeństwo</span>
                         </li>
                         <li data-attribute="spalanie" class="priority-item">
                             <span class="drag-handle">☰</span>
                             <span class="priority-icon">⛽</span>
                             <span class="priority-label">Niskie spalanie</span>
                         </li>
-                        <li data-attribute="bezpieczenstwo" class="priority-item">
-                            <span class="drag-handle">☰</span>
-                            <span class="priority-icon">🛡️</span>
-                            <span class="priority-label">Bezpieczeństwo</span>
-                        </li>
-                        <li data-attribute="komfort" class="priority-item">
-                            <span class="drag-handle">☰</span>
-                            <span class="priority-icon">🛋️</span>
-                            <span class="priority-label">Komfort jazdy</span>
-                        </li>
                         <li data-attribute="osiagi" class="priority-item">
                             <span class="drag-handle">☰</span>
                             <span class="priority-icon">🏁</span>
                             <span class="priority-label">Osiągi / Moc</span>
                         </li>
+                        <li data-attribute="komfort" class="priority-item">
+                            <span class="drag-handle">☰</span>
+                            <span class="priority-icon">🛋️</span>
+                            <span class="priority-label">Komfort / Luksus</span>
+                        </li>
+                        <li data-attribute="technologia" class="priority-item">
+                            <span class="drag-handle">☰</span>
+                            <span class="priority-icon">📱</span>
+                            <span class="priority-label">Technologia (CarPlay, kamery itp.)</span>
+                        </li>
                         <li data-attribute="przestrzen" class="priority-item">
                             <span class="drag-handle">☰</span>
                             <span class="priority-icon">📦</span>
-                            <span class="priority-label">Przestronność</span>
-                        </li>
-                        <li data-attribute="wyposazenie" class="priority-item">
-                            <span class="drag-handle">☰</span>
-                            <span class="priority-icon">📱</span>
-                            <span class="priority-label">Wyposażenie</span>
+                            <span class="priority-label">Przestronność / Bagażnik</span>
                         </li>
                         <li data-attribute="niezawodnosc" class="priority-item">
                             <span class="drag-handle">☰</span>
                             <span class="priority-icon">🔧</span>
                             <span class="priority-label">Niezawodność</span>
                         </li>
-                        <li data-attribute="marka" class="priority-item">
+                        <li data-attribute="cena" class="priority-item">
                             <span class="drag-handle">☰</span>
-                            <span class="priority-icon">🏷️</span>
-                            <span class="priority-label">Marka / Prestiż</span>
+                            <span class="priority-icon">💵</span>
+                            <span class="priority-label">Niska cena zakupu</span>
+                        </li>
+                        <li data-attribute="wyglad" class="priority-item">
+                            <span class="drag-handle">☰</span>
+                            <span class="priority-icon">🎨</span>
+                            <span class="priority-label">Wygląd / Styl</span>
                         </li>
                     </ul>
                 </div>
@@ -468,7 +987,7 @@
                     <button type="button" id="nextBtn" class="btn btn-primary">
                         Dalej →
                     </button>
-                    <button type="submit" id="submitBtn" class="btn btn-success" style="display: none;">
+                    <button type="button" id="submitBtn" class="btn btn-success" style="display: none;">
                         🚗 Znajdź moje auto!
                     </button>
                 </div>
