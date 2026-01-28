@@ -6,7 +6,6 @@
     <title>JAKIEMOTO - Znajdź swoje idealne auto</title>
     <link rel="stylesheet" href="css/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚗</text></svg>">
 </head>
 <body>
     <div class="container">
@@ -14,35 +13,18 @@
             <!-- Logo JAKIEMOTO -->
             <div class="logo-container">
                 <svg class="logo" viewBox="0 0 400 70" width="320" height="56">
-                    <!-- J - Czerwony -->
                     <path d="M5 10 h15 v38 c0 10 -5 15 -15 15 v-10 c5 0 8 -2 8 -7 V20 H5 V10z" fill="#C41E3A"/>
-                    
-                    <!-- A - Granatowy -->
                     <path d="M35 10 h14 l18 52 h-13 l-3 -11 H39 l-3 11 H23 L35 10z M42 41 h10 l-5 -20 -5 20z" fill="#1B365D"/>
-                    
-                    <!-- K - Czerwony -->
                     <path d="M75 10 h13 v20 l16 -20 h16 l-18 22 20 30 h-16 l-12 -21 -6 7 v14 H75 V10z" fill="#C41E3A"/>
-                    
-                    <!-- I - Granatowy -->
                     <path d="M125 10 h13 v52 h-13 V10z" fill="#1B365D"/>
-                    
-                    <!-- E - Czerwony -->
                     <path d="M150 10 h35 v10 h-22 v10 h19 v10 h-19 v12 h22 v10 h-35 V10z" fill="#C41E3A"/>
-                    
-                    <!-- M - Granatowy -->
                     <path d="M195 10 h16 l9 30 9 -30 h16 v52 h-12 V25 l-10 37 h-7 l-10 -37 v37 h-11 V10z" fill="#1B365D"/>
-                    
-                    <!-- O - Granatowe koło z czerwonym akcentem -->
                     <g transform="translate(272, 36)">
                         <circle cx="0" cy="0" r="26" fill="#1B365D"/>
                         <circle cx="0" cy="0" r="13" fill="white"/>
                         <path d="M 0 0 L 26 0 A 26 26 0 0 0 18.4 -18.4 Z" fill="#C41E3A"/>
                     </g>
-                    
-                    <!-- T - Czerwony -->
                     <path d="M305 10 h38 v10 h-12 v42 h-13 V20 h-13 V10z" fill="#C41E3A"/>
-                    
-                    <!-- O - Czerwone koło z granatowym akcentem -->
                     <g transform="translate(365, 36)">
                         <circle cx="0" cy="0" r="26" fill="#C41E3A"/>
                         <circle cx="0" cy="0" r="13" fill="white"/>
@@ -60,29 +42,22 @@
             <p class="step-indicator">Krok <span id="currentStep">1</span> z <span id="totalSteps">8</span></p>
 
             <form id="carQuestionnaireForm">
-                <!-- Krok 1: Płeć -->
+                <!-- Krok 1: Płeć (TYLKO 2 OPCJE) -->
                 <div class="form-step active" data-step="1">
                     <h2>Jakiej jesteś płci?</h2>
-                    <div class="options-grid">
+                    <div class="options-grid gender-grid">
                         <label class="option-card">
-                            <input type="radio" name="gender" value="male" required>
+                            <input type="radio" name="gender" value="mezczyzna" required>
                             <span class="option-content">
                                 <span class="icon">👨</span>
                                 <span class="label">Mężczyzna</span>
                             </span>
                         </label>
                         <label class="option-card">
-                            <input type="radio" name="gender" value="female">
+                            <input type="radio" name="gender" value="kobieta">
                             <span class="option-content">
                                 <span class="icon">👩</span>
                                 <span class="label">Kobieta</span>
-                            </span>
-                        </label>
-                        <label class="option-card">
-                            <input type="radio" name="gender" value="other">
-                            <span class="option-content">
-                                <span class="icon">🧑</span>
-                                <span class="label">Wolę nie podawać</span>
                             </span>
                         </label>
                     </div>
@@ -259,14 +234,14 @@
                 <!-- Krok 5: Budżet -->
                 <div class="form-step" data-step="5">
                     <h2>Jaki masz budżet na auto?</h2>
-                    <p class="step-description">Wybierz maksymalną kwotę, którą chcesz przeznaczyć na zakup samochodu</p>
+                    <p class="step-description">Wybierz maksymalną kwotę, którą chcesz przeznaczyć na zakup</p>
                     <div class="options-grid budget-grid">
                         <label class="option-card">
                             <input type="radio" name="budget" value="30000" required>
                             <span class="option-content">
                                 <span class="icon">💵</span>
                                 <span class="label">Do 30 000 zł</span>
-                                <span class="description">Auta używane, starsze roczniki</span>
+                                <span class="description">Używane, starsze roczniki</span>
                             </span>
                         </label>
                         <label class="option-card">
@@ -282,7 +257,7 @@
                             <span class="option-content">
                                 <span class="icon">💰</span>
                                 <span class="label">50 000 - 80 000 zł</span>
-                                <span class="description">Auta miejskie nowe / używane SUV-y</span>
+                                <span class="description">Nowe miejskie / używane SUV</span>
                             </span>
                         </label>
                         <label class="option-card">
@@ -298,7 +273,7 @@
                             <span class="option-content">
                                 <span class="icon">💎</span>
                                 <span class="label">120 000 - 180 000 zł</span>
-                                <span class="description">Premium i nowe SUV-y</span>
+                                <span class="description">Premium i nowe SUV</span>
                             </span>
                         </label>
                         <label class="option-card">
@@ -306,7 +281,7 @@
                             <span class="option-content">
                                 <span class="icon">💎</span>
                                 <span class="label">180 000 - 250 000 zł</span>
-                                <span class="description">Auta luksusowe</span>
+                                <span class="description">Luksusowe</span>
                             </span>
                         </label>
                         <label class="option-card">
@@ -314,12 +289,11 @@
                             <span class="option-content">
                                 <span class="icon">👑</span>
                                 <span class="label">Powyżej 250 000 zł</span>
-                                <span class="description">Bez limitu budżetowego</span>
+                                <span class="description">Bez limitu</span>
                             </span>
                         </label>
                     </div>
                     
-                    <!-- Własna kwota -->
                     <div class="custom-budget-section">
                         <p>Lub wpisz własną kwotę:</p>
                         <div class="budget-input-wrapper">
@@ -427,7 +401,7 @@
                             <span class="option-content">
                                 <span class="icon">🏔️</span>
                                 <span class="label">Teren / Wieś</span>
-                                <span class="description">Drogi nieutwardzone, polne</span>
+                                <span class="description">Drogi nieutwardzone</span>
                             </span>
                         </label>
                     </div>
@@ -435,8 +409,8 @@
 
                 <!-- Krok 8: Priorytety -->
                 <div class="form-step" data-step="8">
-                    <h2>Co jest dla Ciebie najważniejsze w aucie?</h2>
-                    <p class="hint">Przeciągnij elementy, aby ustawić kolejność od najważniejszego (góra) do najmniej ważnego (dół)</p>
+                    <h2>Co jest dla Ciebie najważniejsze?</h2>
+                    <p class="hint">Przeciągnij od najważniejszego (góra) do najmniej ważnego (dół)</p>
                     <ul id="priorityList" class="priority-list">
                         <li data-attribute="cena" class="priority-item">
                             <span class="drag-handle">☰</span>
@@ -466,12 +440,12 @@
                         <li data-attribute="przestrzen" class="priority-item">
                             <span class="drag-handle">☰</span>
                             <span class="priority-icon">📦</span>
-                            <span class="priority-label">Przestronność / Bagażnik</span>
+                            <span class="priority-label">Przestronność</span>
                         </li>
                         <li data-attribute="wyposazenie" class="priority-item">
                             <span class="drag-handle">☰</span>
                             <span class="priority-icon">📱</span>
-                            <span class="priority-label">Wyposażenie / Technologia</span>
+                            <span class="priority-label">Wyposażenie</span>
                         </li>
                         <li data-attribute="niezawodnosc" class="priority-item">
                             <span class="drag-handle">☰</span>
@@ -534,7 +508,7 @@
                 </svg>
             </div>
             <p>© 2024 JAKIEMOTO - Znajdź swoje wymarzone auto</p>
-            <p class="footer-links">Wyniki wyszukiwania prowadzą do <a href="https://www.otomoto.pl" target="_blank">OTOMOTO.pl</a></p>
+            <p class="footer-links">Wyniki prowadzą do <a href="https://www.otomoto.pl" target="_blank">OTOMOTO.pl</a></p>
         </footer>
     </div>
 
